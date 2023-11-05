@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import errorImage from "../../../assets/errorImage.jpg";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 
@@ -8,13 +9,17 @@ const ErrorPage = () => {
                 <div className=" pt-16">
                     <div className=" text-center mx-auto">
                         <p className="pb-3">This page could not be found.</p>
-                        <button className="capitalize border-2 mx-auto border-primaryColor bg-primaryColor  text-white rounded-full py-3 md:px-8 px-4 flex items-center md:gap-5  gap-2 md:text-base text-sm">
-                            Go Home <MdOutlineArrowForwardIos />
-                        </button>
+                        <Link
+                            to={"/"}
+                            className="capitalize border-2 mx-auto border-primaryColor bg-primaryColor  text-white rounded-full py-3 md:px-8 px-4  items-center md:gap-5 inline-block  gap-2 md:text-base text-sm"
+                        >
+                            Go Home{" "}
+                            <MdOutlineArrowForwardIos className="inline" />
+                        </Link>
                     </div>
                     <div className="">
                         <img
-                            className="w-6/12 mx-auto"
+                            className="md:w-6/12 mx-auto w-10/12"
                             src={errorImage}
                             alt=""
                         />

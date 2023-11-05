@@ -4,7 +4,7 @@ import logo2 from "../../../assets/logo.png";
 
 const Footer = () => {
     return (
-        <div className="bg-whiteSecondary/10">
+        <div className="bg-whiteSecondary/10 mt-10">
             <div className="container mx-auto md:py-16 md:px-6 px-2 md:pb-32 pb-16">
                 <div className="grid md:grid-cols-3 grid-cols-1 md:justify-between justify-center md:items-start items-center md:text-left text-start space-y-8">
                     <div className="mt-4">

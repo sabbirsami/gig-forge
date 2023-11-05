@@ -10,3 +10,10 @@ body {
 .banner-section {
     background-image: linear-gradient(90deg, #ffffff 80%, #d2f2e3 20%);
 }
+.react-tabs__tab-list {
+    border-bottom: 1px solid #1dbf73 !important;
+}
+.react-tabs__tab--selected {
+    border-color: #1dbf73 !important;
+    color: #008848 !important;
+}

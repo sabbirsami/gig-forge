@@ -163,9 +163,9 @@ function Navbar() {
                                                         className={
                                                             "pb-3 p-4 text-white"
                                                         }
-                                                        to={"/login"}
+                                                        to={"/sign-in"}
                                                     >
-                                                        Login
+                                                        Sign In
                                                     </NavLink>
                                                 )}
                                             </li>

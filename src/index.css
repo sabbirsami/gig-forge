@@ -17,3 +17,17 @@ body {
     border-color: #1dbf73 !important;
     color: #008848 !important;
 }
+a.active {
+    position: relative;
+    color: #1dbf73;
+}
+a.active::after {
+    content: "•";
+    color: #1dbf73;
+    font-size: 20px;
+    margin-bottom: -5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}

@@ -133,7 +133,7 @@ const JobDetails = () => {
                                 Deadline
                             </label>
                             <input
-                                type="text"
+                                type="date"
                                 className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
                                 placeholder="Deadline"
                             />

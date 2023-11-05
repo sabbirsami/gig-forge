@@ -8,11 +8,11 @@ const Brand = () => {
     return (
         <div className=" bg-whiteSecondary/10 py-6">
             <div className=" container mx-auto px-6">
-                <div className="flex items-center justify-evenly">
+                <div className="flex md:flex-row flex-col items-center justify-evenly">
                     <h3 className="text-2xl font-bold text-whiteSecondary">
                         Trusted by:
                     </h3>
-                    <div className="flex items-center gap-32">
+                    <div className="flex items-center xl:gap-32 lg:gap-16 md:gap-8 flex-wrap gap-x-4">
                         <img src={google} alt="" />
                         <img src={meta} alt="" />
                         <img src={netflix} alt="" />

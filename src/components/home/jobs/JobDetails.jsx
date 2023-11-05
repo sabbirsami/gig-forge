@@ -27,15 +27,17 @@ const JobDetails = () => {
     ];
     return (
         <div className="container mx-auto px-6 ">
-            <div className="grid grid-cols-5 justify-between py-10">
-                <div className=" col-span-2 space-y-4">
-                    <div className="flex gap-10 justify-between items-start">
-                        <h2 className="text-4xl font-bold">{title}</h2>
+            <div className="grid xl:grid-cols-5 lg:grid-cols-4 xl:gap-0 lg:gap-14 justify-between py-10">
+                <div className=" md:col-span-2 col-span-1 space-y-4">
+                    <div className="md:flex gap-10 justify-between items-start">
+                        <h2 className="md:text-4xl text-3xl font-bold">
+                            {title}
+                        </h2>
                         <p className="text-4xl font-bold text-primaryColor">
                             ${price}
                         </p>
                     </div>
-                    <p className="">{short_description}</p>
+                    <p className="md:text-base text-sm">{short_description}</p>
                     <div className="py-2">
                         {tags.map((tag, idx) => (
                             <p
@@ -48,18 +50,18 @@ const JobDetails = () => {
                     </div>
                     <div className="">
                         <div className="bg-secondaryColor/40 rounded-md">
-                            <div className="p-10">
+                            <div className="md:p-10 p-6">
                                 <h4 className="text-base font-bold text-black/60">
                                     Price range:
                                 </h4>
-                                <div className="text-4xl font-bold flex items-center gap-5 pt-2 pb-4 ">
+                                <div className="md:text-4xl text-3xl font-bold flex items-center gap-5 pt-2 pb-4 ">
                                     <p className="">${minimum_price}</p>{" "}
-                                    <div className="w-24 h-0.5 bg-black "></div>
+                                    <div className="md:w-24 w-8 h-0.5 bg-black "></div>
                                     <p className="">${maximum_price}</p>{" "}
                                 </div>
                                 <hr className="mb-5" />
                                 <div className="col-span-2 pt-0.5 py-3">
-                                    <div className="flex justify-between items-center">
+                                    <div className="md:flex justify-between items-center">
                                         <p className="text-base font-bold text-black/60">
                                             Deadline:{" "}
                                             <span className="text-black">
@@ -97,7 +99,7 @@ const JobDetails = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-6">
+                        <div className="my-6">
                             <div className="bg-secondaryColor/40 px-10 py-6 rounded-md">
                                 <p className="text-base font-bold text-black/60 ">
                                     Employer Email:{" "}
@@ -109,10 +111,10 @@ const JobDetails = () => {
                         </div>
                     </div>
                 </div>
-                <div className=""></div>
-                <div className="col-span-2 sticky top-0">
+                <div className="xl:block hidden"></div>
+                <div className="md:col-span-2 col-span-1 sticky top-0">
                     <form>
-                        <div className=" p-14 bg-whiteSecondary/10 rounded-md">
+                        <div className=" md:p-14 p-6 bg-whiteSecondary/10 rounded-md">
                             <label
                                 htmlFor="buyerEmail"
                                 className=" mt-6 font-bold text-sm "

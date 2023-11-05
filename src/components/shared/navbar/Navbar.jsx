@@ -31,17 +31,17 @@ function Navbar() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink className=" p-4" to={"/add-job"}>
+                                <NavLink className=" p-4" to={"/posted-jobs"}>
                                     Posted jobs
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink className=" p-4" to={"/add-job"}>
+                                <NavLink className=" p-4" to={"/my-bids"}>
                                     My Bids
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink className=" p-4" to={"/add-job"}>
+                                <NavLink className=" p-4" to={"/bid-requests"}>
                                     Bid Requests
                                 </NavLink>
                             </li>
@@ -78,7 +78,7 @@ function Navbar() {
                                         </div>
                                     </div>
                                 ) : (
-                                    <NavLink className={"p-4"} to={"/login"}>
+                                    <NavLink className={"p-4"} to={"/sign-in"}>
                                         Sign In
                                     </NavLink>
                                 )}

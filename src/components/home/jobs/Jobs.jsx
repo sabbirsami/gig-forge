@@ -53,7 +53,7 @@ const Jobs = () => {
                             <span className="loading loading-spinner text-success"></span>
                         </div>
                     ) : (
-                        <div className="grid xl:grid-cols-4 grid-cols-1 gap-6 py-6">
+                        <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6 py-12">
                             {data.slice(0, 4).map((job) => (
                                 <Job key={job._id} job={job}></Job>
                             ))}
@@ -66,7 +66,7 @@ const Jobs = () => {
                             <span className="loading loading-spinner text-success"></span>
                         </div>
                     ) : (
-                        <div className="grid xl:grid-cols-4 grid-cols-1 gap-6 py-6">
+                        <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6 py-12">
                             {data.slice(0, 4).map((job) => (
                                 <Job key={job._id} job={job}></Job>
                             ))}
@@ -79,7 +79,7 @@ const Jobs = () => {
                             <span className="loading loading-spinner text-success"></span>
                         </div>
                     ) : (
-                        <div className="grid xl:grid-cols-4 grid-cols-1 gap-6 py-6">
+                        <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6 py-12">
                             {data.slice(0, 4).map((job) => (
                                 <Job key={job._id} job={job}></Job>
                             ))}

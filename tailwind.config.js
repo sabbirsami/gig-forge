@@ -7,6 +7,7 @@ export default {
             primaryColor: "#1dbf73",
             secondaryColor: "#D2F2E3",
             white: "#ffffff",
+            whiteSecondary: "#b4b4b4",
             black: "#000000",
         },
     },

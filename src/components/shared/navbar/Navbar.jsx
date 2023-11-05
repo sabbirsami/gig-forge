@@ -10,8 +10,8 @@ function Navbar() {
     const [hide, setHide] = useState(false);
     return (
         <div className="">
-            <div className="container mx-auto">
-                <div className="flex justify-between items-center py-5">
+            <div className="container mx-auto px-6">
+                <div className="flex justify-between items-center py-7">
                     {/* logo */}
                     <div className="">
                         <img className="w-48" src={logo} alt="" />

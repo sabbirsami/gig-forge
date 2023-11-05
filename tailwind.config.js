@@ -5,6 +5,9 @@ export default {
         extend: {},
         colors: {
             primaryColor: "#1dbf73",
+            secondaryColor: "#D2F2E3",
+            white: "#ffffff",
+            black: "#000000",
         },
     },
     plugins: [require("daisyui")],

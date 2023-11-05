@@ -5,3 +5,8 @@
 body {
     font-family: "Inter", sans-serif;
 }
+
+/* BANNER SECTION  */
+.banner-section {
+    background-image: linear-gradient(90deg, #ffffff 80%, #d2f2e3 20%);
+}

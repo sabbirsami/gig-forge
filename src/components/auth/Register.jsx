@@ -51,6 +51,7 @@ const Register = () => {
                     })
                     .catch((err) => {
                         // An error occurred
+
                         setSignInWithGoogleError(
                             err.message.split("(")[1].split("-").join(" ")
                         );

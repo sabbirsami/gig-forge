@@ -21,7 +21,7 @@ const JobDetails = () => {
         price,
         short_description,
         status,
-        package: items,
+        packageItems,
         tags,
     } = data[0];
 
@@ -122,7 +122,7 @@ const JobDetails = () => {
                                             Package Include:
                                         </p>
                                         <ul className="list-disc ps-6 pt-2">
-                                            {items.map((data, idx) => (
+                                            {packageItems.map((data, idx) => (
                                                 <li
                                                     className="text-sm font-semibold"
                                                     key={idx}

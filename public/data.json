@@ -7,7 +7,7 @@
         "maximum_price": 550,
         "short_description": "We're in need of a Logo Designer to create a unique and memorable logo for our brand. Experience in logo design and branding is essential.",
         "category": "graphic_design",
-        "package": [
+        "packageItems": [
             "Logo Design",
             "Brand Identity Design",
             "Print Design (e.g., brochures, flyers)",
@@ -35,7 +35,7 @@
         "maximum_price": 350,
         "short_description": "Join our team as a Print Layout Designer to create an attractive layout for our company brochure. Proficiency in print design and layout is required.",
         "category": "graphic_design",
-        "package": [
+        "packageItems": [
             "Logo Design",
             "Brand Identity Design",
             "Print Design (e.g., brochures, flyers)",
@@ -68,7 +68,7 @@
         "maximum_price": 850,
         "short_description": "We need an Illustrator to create colorful and engaging illustrations for a children's book. Experience in illustrating for children's literature is a must.",
         "category": "graphic_design",
-        "package": [
+        "packageItems": [
             "Logo Design",
             "Brand Identity Design",
             "Print Design (e.g., brochures, flyers)",
@@ -99,9 +99,9 @@
         "price": 600,
         "minimum_price": 550,
         "maximum_price": 650,
-        "short_description": "We're hiring a Packaging Designer to create eye-catching packaging designs for our new product. Proficiency in package design and branding is required.",
+        "short_description": "We're hiring a Packaging Designer to create eye-catching packaging designs for our new product. Proficiency in packageItems design and branding is required.",
         "category": "graphic_design",
-        "package": [
+        "packageItems": [
             "Logo Design",
             "Brand Identity Design",
             "Print Design (e.g., brochures, flyers)",
@@ -129,7 +129,7 @@
         "maximum_price": 750,
         "short_description": "Join us as a Web Graphic Designer to revamp and modernize the graphics on our website. Experience in web design and user interface graphics is required.",
         "category": "graphic_design",
-        "package": [
+        "packageItems": [
             "Logo Design",
             "Brand Identity Design",
             "Print Design (e.g., brochures, flyers)",
@@ -162,7 +162,7 @@
         "maximum_price": 450,
         "short_description": "We're seeking a Poster Designer to create eye-catching posters for promoting our upcoming events. Proficiency in poster design and event promotion graphics is required.",
         "category": "graphic_design",
-        "package": [
+        "packageItems": [
             "Logo Design",
             "Brand Identity Design",
             "Print Design (e.g., brochures, flyers)",
@@ -189,7 +189,7 @@
         "minimum_price": 1000,
         "maximum_price": 1400,
         "short_description": "We're seeking a Front-End Developer to create the user interface of our e-commerce website. Proficiency in HTML, CSS, and JavaScript is required.",
-        "package": [
+        "packageItems": [
             "Logo Design and Branding Services",
             "Website Maintenance and Updates",
             "Mobile App Development (if needed)",
@@ -221,7 +221,7 @@
         "minimum_price": 1300,
         "maximum_price": 1700,
         "short_description": "We're looking for a Back-End Developer to build the server and database for our Software-as-a-Service (SaaS) application. Knowledge of server-side programming is essential.",
-        "package": [
+        "packageItems": [
             "Logo Design and Branding Services",
             "Website Maintenance and Updates",
             "Mobile App Development (if needed)",
@@ -252,7 +252,7 @@
         "minimum_price": 1600,
         "maximum_price": 2000,
         "short_description": "Join our team as a Full-Stack Developer to work on a custom web application project. Proficiency in both front-end and back-end technologies is required.",
-        "package": [
+        "packageItems": [
             "Logo Design and Branding Services",
             "Website Maintenance and Updates",
             "Mobile App Development (if needed)",
@@ -283,7 +283,7 @@
         "minimum_price": 700,
         "maximum_price": 900,
         "short_description": "We need a Web Designer to create an attractive and responsive portfolio website. Proficiency in design tools and responsive design is a must.",
-        "package": [
+        "packageItems": [
             "Logo Design and Branding Services",
             "Website Maintenance and Updates",
             "Mobile App Development (if needed)",
@@ -314,7 +314,7 @@
         "minimum_price": 450,
         "maximum_price": 550,
         "short_description": "We're hiring a WordPress Developer to build and customize a blog website using WordPress. Experience with WordPress themes and plugins is required.",
-        "package": [
+        "packageItems": [
             "Logo Design and Branding Services",
             "Website Maintenance and Updates",
             "Mobile App Development (if needed)",
@@ -340,7 +340,7 @@
         "minimum_price": 1800,
         "maximum_price": 2200,
         "short_description": "Join us as a Web Development Project Manager to oversee and lead various web development projects. Strong project management skills are essential.",
-        "package": [
+        "packageItems": [
             "Logo Design and Branding Services",
             "Website Maintenance and Updates",
             "Mobile App Development (if needed)",
@@ -366,7 +366,7 @@
         "minimum_price": 700,
         "maximum_price": 900,
         "short_description": "We're looking for a Social Media Marketing Specialist to manage our social media accounts, create engaging content, and increase our online presence.",
-        "package": [
+        "packageItems": [
             "Social Media Advertising Budget",
             "Influencer Marketing Campaigns",
             "Marketing Automation Tools",
@@ -392,7 +392,7 @@
         "minimum_price": 900,
         "maximum_price": 1100,
         "short_description": "We need an SEO Analyst to improve our website's search engine rankings and drive organic traffic. Experience in on-page and off-page SEO is required.",
-        "package": [
+        "packageItems": [
             "Social Media Advertising Budget",
             "Influencer Marketing Campaigns",
             "Marketing Automation Tools",
@@ -418,7 +418,7 @@
         "minimum_price": 550,
         "maximum_price": 650,
         "short_description": "Join our team as an Email Marketing Specialist to create and manage email campaigns, analyze results, and optimize email marketing strategies.",
-        "package": [
+        "packageItems": [
             "Social Media Advertising Budget",
             "Influencer Marketing Campaigns",
             "Marketing Automation Tools",
@@ -448,7 +448,7 @@
         "minimum_price": 1100,
         "maximum_price": 1300,
         "short_description": "We're hiring a PPC Advertising Manager to run and optimize pay-per-click advertising campaigns on platforms like Google Ads and Facebook.",
-        "package": [
+        "packageItems": [
             "Social Media Advertising Budget",
             "Influencer Marketing Campaigns",
             "Marketing Automation Tools",
@@ -474,7 +474,7 @@
         "minimum_price": 700,
         "maximum_price": 800,
         "short_description": "Join us as a Content Marketing Specialist and create high-quality content, including blog posts, articles, and other marketing materials to engage our audience.",
-        "package": [
+        "packageItems": [
             "Social Media Advertising Budget",
             "Influencer Marketing Campaigns",
             "Marketing Automation Tools",
@@ -500,7 +500,7 @@
         "minimum_price": 900,
         "maximum_price": 1000,
         "short_description": "We're seeking a Social Media Advertising Manager to design and execute social media ad campaigns and achieve targeted results.",
-        "package": [
+        "packageItems": [
             "Social Media Advertising Budget",
             "Influencer Marketing Campaigns",
             "Marketing Automation Tools",
@@ -526,7 +526,7 @@
         "minimum_price": 650,
         "maximum_price": 750,
         "short_description": "Join our team as a Digital Marketing Coordinator to support various digital marketing activities, including content management, social media, and analytics.",
-        "package": [
+        "packageItems": [
             "Social Media Advertising Budget",
             "Influencer Marketing Campaigns",
             "Marketing Automation Tools",

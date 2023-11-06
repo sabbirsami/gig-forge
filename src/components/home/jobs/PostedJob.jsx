@@ -1,15 +1,32 @@
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 
 function PostedJob({ job, refetch, user }) {
     const handleDelete = () => {
-        fetch(`http://localhost:5000/jobs/${user.email}/${job._id}`, {
-            method: "DELETE",
-        })
-            .then((res) => res.json())
-            .then((result) => {
-                console.log(result);
-                refetch();
-            });
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            showCancelButton: true,
+            confirmButtonColor: "#d63031",
+            cancelButtonColor: "#1dbf73",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/jobs/${user.email}/${job._id}`, {
+                    method: "DELETE",
+                })
+                    .then((res) => res.json())
+                    .then((result) => {
+                        console.log(result);
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success",
+                        });
+                        refetch();
+                    });
+            }
+        });
     };
     return (
         <div className="border border-primaryColor rounded-md shadow-md mt-2">

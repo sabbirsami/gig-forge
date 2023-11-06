@@ -3,11 +3,15 @@ import { NavLink } from "react-router-dom";
 import { SlMenu } from "react-icons/sl";
 import { RxCross1 } from "react-icons/rx";
 import logo from "../../../assets/logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../auth/AuthProvider";
 
 function Navbar() {
-    const user = "";
+    const { user, signOutUser } = useContext(AuthContext);
     const [hide, setHide] = useState(false);
+    const handleSignOut = () => {
+        signOutUser();
+    };
     return (
         <div className="">
             <div className="container mx-auto px-6">
@@ -49,10 +53,10 @@ function Navbar() {
                             <li>
                                 {user ? (
                                     <div
-                                        className={`py-1 px-2 flex gap-2 rounded-full items-center`}
+                                        className={`py-1 px-2 flex gap-2 rounded-full items-center border`}
                                     >
                                         <p className="ps-1">
-                                            {user.displayName}
+                                            {user.displayName.split(" ")[0]}
                                         </p>
                                         <div className="dropdown dropdown-end">
                                             <label
@@ -69,7 +73,7 @@ function Navbar() {
                                             >
                                                 <p className="text-center py-1">
                                                     <button
-                                                    // onClick={handleSignOut}
+                                                        onClick={handleSignOut}
                                                     >
                                                         Sign Out
                                                     </button>
@@ -148,9 +152,9 @@ function Navbar() {
                                                             >
                                                                 <li className="p-4">
                                                                     <button
-                                                                    // onClick={
-                                                                    //     handleSignOut
-                                                                    // }
+                                                                        onClick={
+                                                                            handleSignOut
+                                                                        }
                                                                     >
                                                                         Log Out
                                                                     </button>

@@ -1,7 +1,15 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../auth/AuthProvider";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const JobDetails = () => {
+    const { register, handleSubmit } = useForm();
     const data = useLoaderData();
+    const { user } = useContext(AuthContext);
+    // const navigate = useNavigate();
     const {
         title,
         category,
@@ -12,19 +20,44 @@ const JobDetails = () => {
         price,
         short_description,
         status,
+        package: items,
         tags,
     } = data[0];
-    const extraData = [
-        "100% Unique",
-        "Top Quality",
-        "Copywriting for Website and Marketing Materials",
-        "Unlimited Revisions",
-        "Content Migration (if an existing site is being replaced)",
-        "Content Migration (if an existing site is being replaced)",
-        "5 Day delivery",
-        "Content Creation (blog posts, videos, infographics, etc.)",
-        "Ongoing Support and Maintenance (optional)",
-    ];
+
+    const onSubmit = (formData) => {
+        console.log(formData);
+        const deadline = formData.deadline;
+        const bitPrice = formData.bitPrice;
+        const userEmail = user.email;
+        const bitData = {
+            title,
+            employer_email,
+            userEmail,
+            bitPrice,
+            deadline,
+            status,
+        };
+        console.log(bitData);
+        // navigate("/my-bits");
+        axios
+            .post("http://localhost:5000/bits", bitData)
+            .then(function (response) {
+                // handle success
+                toast.success("Successfully Bid on the project", {
+                    duration: 2000,
+                    className: "mt-32",
+                });
+                console.log(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+                toast.error("  Fail to Bid on the project", {
+                    duration: 2000,
+                    className: "mt-32",
+                });
+            });
+    };
     return (
         <div className="container mx-auto px-6 ">
             <div className="grid xl:grid-cols-5 lg:grid-cols-4 xl:gap-0 lg:gap-14 justify-between py-10">
@@ -86,7 +119,7 @@ const JobDetails = () => {
                                             Package Include:
                                         </p>
                                         <ul className="list-disc ps-6 pt-2">
-                                            {extraData.map((data, idx) => (
+                                            {items.map((data, idx) => (
                                                 <li
                                                     className="text-sm font-semibold"
                                                     key={idx}
@@ -113,16 +146,17 @@ const JobDetails = () => {
                 </div>
                 <div className="xl:block hidden"></div>
                 <div className="md:col-span-2 col-span-1 sticky top-0">
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className=" md:p-14 p-6 bg-whiteSecondary/10 rounded-md">
                             <label
-                                htmlFor="buyerEmail"
+                                htmlFor="bitPrice"
                                 className=" mt-6 font-bold text-sm "
                             >
                                 Price
                             </label>
                             <input
                                 type="number"
+                                {...register("bitPrice", { required: true })}
                                 className="py-4 px-3 w-full mb-6 mt-2 rounded-md"
                                 placeholder="Price(your bidding amount)"
                             />
@@ -136,6 +170,7 @@ const JobDetails = () => {
                                 type="date"
                                 className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
                                 placeholder="Deadline"
+                                {...register("deadline", { required: true })}
                             />
                             <label
                                 htmlFor="buyerEmail"
@@ -145,6 +180,8 @@ const JobDetails = () => {
                             </label>
                             <input
                                 type="email"
+                                value={user?.email}
+                                readOnly
                                 className="py-4 px-3 w-full mb-6 mt-2 rounded-md"
                                 placeholder="Email"
                             />
@@ -157,13 +194,16 @@ const JobDetails = () => {
                             <input
                                 type="email"
                                 name="buyerEmail"
+                                value={employer_email}
+                                readOnly
                                 className="py-4 px-3 w-full mt-2 rounded-md"
                                 placeholder="Buyer Email"
                             />
                         </div>
                         <button
-                            className="w-full bg-primaryColor rounded-md py-4 mt-6 text-white font-bold"
+                            className={`w-full bg-primaryColor rounded-md py-4 mt-6 disable text-white font-bold disabled:opacity-75`}
                             type="submit"
+                            disabled={employer_email === user?.email}
                         >
                             Bid on the project
                         </button>

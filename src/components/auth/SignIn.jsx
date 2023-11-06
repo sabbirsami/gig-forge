@@ -49,7 +49,7 @@ const SignIn = () => {
                 console.log(result);
                 setSignInWithGoogleError("");
                 setLoading(false);
-                setGoogleButtonLoading(true);
+                setGoogleButtonLoading(false);
                 toast.success(" Sign In successfully", {
                     duration: 2000,
                     className: "mt-32",

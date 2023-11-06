@@ -6,6 +6,7 @@ import Register from "../auth/Register";
 import ErrorPage from "../shared/errorPage/ErrorPage";
 import JobDetails from "../home/jobs/JobDetails";
 import AddJobs from "../home/jobs/AddJobs";
+import MyBids from "../home/bits/MyBids";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: "/add-job",
                 element: <AddJobs />,
+            },
+            {
+                path: "/my-bids",
+                element: <MyBids />,
             },
             {
                 path: "/job/:id",

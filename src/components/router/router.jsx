@@ -7,6 +7,7 @@ import ErrorPage from "../shared/errorPage/ErrorPage";
 import JobDetails from "../home/jobs/JobDetails";
 import AddJobs from "../home/jobs/AddJobs";
 import MyBids from "../home/bits/MyBids";
+import PrivateRoute from "../shared/privateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -28,15 +29,27 @@ const router = createBrowserRouter([
             },
             {
                 path: "/add-job",
-                element: <AddJobs />,
+                element: (
+                    <PrivateRoute>
+                        <AddJobs />
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "/my-bids",
-                element: <MyBids />,
+                element: (
+                    <PrivateRoute>
+                        <MyBids />
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "/job/:id",
-                element: <JobDetails />,
+                element: (
+                    <PrivateRoute>
+                        <JobDetails />
+                    </PrivateRoute>
+                ),
                 loader: ({ params }) =>
                     fetch(`http://localhost:5000/job/${params.id}`),
             },

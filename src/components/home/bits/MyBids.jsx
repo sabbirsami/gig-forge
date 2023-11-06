@@ -6,12 +6,15 @@ import Bid from "./Bid";
 const MyBids = () => {
     const { user } = useContext(AuthContext);
     const [bidsData, setBidsData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const userEmail = user?.email;
     const url = `http://localhost:5000/bits/${userEmail}`;
     useEffect(() => {
+        setLoading(true);
         axios.get(url).then((res) => {
             setBidsData(res.data);
+            setLoading(false);
         });
     }, [url]);
     return (
@@ -20,11 +23,17 @@ const MyBids = () => {
          py-6"
         >
             <h2 className="text-lg font-bold">My Bids:</h2>
-            <div className="grid grid-cols-1 pb-12 pt-2">
-                {bidsData.map((bid) => (
-                    <Bid key={bid._id} bid={bid}></Bid>
-                ))}
-            </div>
+            {loading ? (
+                <div className="flex justify-center items-center h-72">
+                    <span className="loading loading-spinner text-success"></span>
+                </div>
+            ) : (
+                <div className="grid grid-cols-1 pb-12 pt-2">
+                    {bidsData.map((bid) => (
+                        <Bid key={bid._id} bid={bid}></Bid>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

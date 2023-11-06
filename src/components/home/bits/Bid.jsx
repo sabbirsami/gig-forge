@@ -1,6 +1,28 @@
 import PropTypes from "prop-types";
+import { AuthContext } from "../../auth/AuthProvider";
+import { useContext } from "react";
 
 function Bid({ bid }) {
+    const { user } = useContext(AuthContext);
+    const userEmail = user?.email;
+
+    const handleComplete = () => {
+        const status = "complete";
+        fetch(`http://localhost:5000/bits/${userEmail}/${bid._id}`, {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ status }),
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     return (
         <div className="border border-primaryColor rounded-md shadow-md mt-2">
             <div className="p-4">
@@ -25,7 +47,17 @@ function Bid({ bid }) {
                             <p className="text-sm text-whiteSecondary">
                                 Status:{" "}
                             </p>
-                            <p className="text-sm font-semibold">
+                            <p
+                                className={`${
+                                    bid.status === "canceled"
+                                        ? "text-errorColor"
+                                        : ""
+                                } ${
+                                    bid.status === "in progress"
+                                        ? "text-[#008848]"
+                                        : ""
+                                } text-sm font-semibold`}
+                            >
                                 {bid.status}
                             </p>
                         </div>
@@ -37,9 +69,16 @@ function Bid({ bid }) {
                             </span>
                         </p>
                         <div className="ms-auto">
-                            <button className="text-xs text-[#008848] rounded-full px-2.5 py-1.5 bg-secondaryColor/50 font-semibold">
-                                Complete
-                            </button>
+                            {bid.status === "in progress" ? (
+                                <button
+                                    onClick={handleComplete}
+                                    className="text-xs text-[#008848] rounded-full px-2.5 py-1.5 bg-secondaryColor/50 font-semibold"
+                                >
+                                    Complete
+                                </button>
+                            ) : (
+                                ""
+                            )}
                         </div>
                     </div>
                 </div>

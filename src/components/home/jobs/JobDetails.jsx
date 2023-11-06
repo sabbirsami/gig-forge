@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthProvider";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -8,8 +8,9 @@ import toast from "react-hot-toast";
 const JobDetails = () => {
     const { register, handleSubmit } = useForm();
     const data = useLoaderData();
+    const [loading, setLoading] = useState(false);
     const { user } = useContext(AuthContext);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const {
         title,
         category,
@@ -25,6 +26,7 @@ const JobDetails = () => {
     } = data[0];
 
     const onSubmit = (formData) => {
+        setLoading(true);
         console.log(formData);
         const deadline = formData.deadline;
         const bitPrice = formData.bitPrice;
@@ -38,7 +40,6 @@ const JobDetails = () => {
             status,
         };
         console.log(bitData);
-        // navigate("/my-bits");
         axios
             .post("http://localhost:5000/bits", bitData)
             .then(function (response) {
@@ -47,6 +48,8 @@ const JobDetails = () => {
                     duration: 2000,
                     className: "mt-32",
                 });
+                setLoading(false);
+                navigate("/my-bids");
                 console.log(response);
             })
             .catch(function (error) {
@@ -205,7 +208,11 @@ const JobDetails = () => {
                             type="submit"
                             disabled={employer_email === user?.email}
                         >
-                            Bid on the project
+                            {loading ? (
+                                <span className="loading loading-spinner text-white"></span>
+                            ) : (
+                                <span> Bid on the project</span>
+                            )}
                         </button>
                     </form>
                 </div>

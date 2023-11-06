@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createContext } from "react";
 import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
+    onAuthStateChanged,
     signInWithEmailAndPassword,
     signInWithPopup,
 } from "firebase/auth";
@@ -28,11 +29,18 @@ function AuthProvider({ children }) {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+        return () => {
+            unSubscribe();
+        };
+    }, []);
     const data = {
         loading,
         setLoading,
         user,
-        setUser,
         signInWithGoogle,
         registerUser,
         signInUser,

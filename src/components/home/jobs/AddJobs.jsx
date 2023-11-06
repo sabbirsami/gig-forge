@@ -3,9 +3,9 @@ const AddJobs = () => {
         <div className="container mx-auto px-6">
             <h2 className="text-4xl font-bold pt-10 text-center">Add Jobs</h2>
             <form>
-                <div className="grid grid-cols-2 gap-16">
+                <div className="grid md:grid-cols-2 grid-cols-1 lg:gap-16 md:gap-8 gap-0">
                     <div className="py-10">
-                        <div className=" md:p-14 p-6 bg-whiteSecondary/10 rounded-md">
+                        <div className=" lg:p-14  p-8 bg-whiteSecondary/10 rounded-md">
                             <label
                                 htmlFor="jobTitle"
                                 className=" mt-6 font-bold text-sm "
@@ -61,7 +61,7 @@ const AddJobs = () => {
                                 className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
                                 placeholder="Email"
                             />
-                            <div className="flex justify-between items-center gap-6">
+                            <div className="xl:flex justify-between items-center gap-6">
                                 <div className=" ">
                                     <label
                                         htmlFor="buyerEmail"
@@ -112,7 +112,7 @@ const AddJobs = () => {
                         </div>
                     </div>
                     <div className="py-10">
-                        <div className=" md:p-14 p-6 bg-whiteSecondary/10 rounded-md">
+                        <div className=" lg:p-14  p-8 bg-whiteSecondary/10 rounded-md">
                             <label
                                 htmlFor="price"
                                 className=" mt-6 font-bold text-sm "

@@ -1,8 +1,23 @@
+import { useForm, Controller } from "react-hook-form";
 import { BsCheckLg } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+    const {
+        register,
+        handleSubmit,
+        control,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = (data) => console.log(data);
+    const validatePassword = (value) => {
+        if (!/(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}/.test(value)) {
+            return "Password must have at least 1 uppercase letter, 1 special character, 1 number, and be at least 8 characters long.";
+        }
+        return true;
+    };
     return (
         <div className="">
             <div className="container mx-auto px-6">
@@ -42,8 +57,8 @@ const Register = () => {
                         </div>
                     </div>
                     <div className="bg-secondaryColor rounded-lg lg:px-16 md:px-8 lg:py-16 p-6  md:mt-16">
-                        <h2 className="text-4xl pb-8 pt-4">Register</h2>
-                        <form>
+                        <h2 className="text-4xl pb-8 pt-2">Register</h2>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <div className=" flex lg:flex-col xl:flex-row flex-col justify-between gap-6">
                                 <div className="grow">
                                     <label
@@ -56,10 +71,20 @@ const Register = () => {
                                     <input
                                         type="text"
                                         name="firstName"
-                                        required
+                                        {...register("firstName", {
+                                            required: true,
+                                        })}
                                         className=" rounded-md w-full py-3  px-2 bg-white/70"
                                         placeholder="Enter email here.."
                                     />
+                                    {/* error message */}
+                                    <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                        {errors.firstName && (
+                                            <span>
+                                                First Name is required *
+                                            </span>
+                                        )}
+                                    </label>
                                 </div>
                                 <div className="">
                                     <label
@@ -72,10 +97,18 @@ const Register = () => {
                                     <input
                                         type="text"
                                         name="lastName"
-                                        required
+                                        {...register("lastName", {
+                                            required: true,
+                                        })}
                                         className=" rounded-md w-full py-3 px-2 bg-white/70"
                                         placeholder="Enter email here.."
                                     />
+                                    {/* error message */}
+                                    <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                        {errors.lastName && (
+                                            <span>Last Name is required *</span>
+                                        )}
+                                    </label>
                                 </div>
                             </div>
                             <label
@@ -87,11 +120,17 @@ const Register = () => {
                             </label>
                             <input
                                 type="text"
-                                name="photo"
-                                required
+                                name="photoUrl"
+                                {...register("photoUrl", { required: true })}
                                 className=" rounded-md w-full py-3  px-4 bg-white/70"
                                 placeholder="Enter photo URL.."
                             />
+                            {/* error message */}
+                            <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                {errors.photoUrl && (
+                                    <span>Photo URL is required *</span>
+                                )}
+                            </label>
                             <label
                                 htmlFor="email"
                                 className="block md:w-64 w-full pt-8 pb-2 font-semibold"
@@ -102,29 +141,47 @@ const Register = () => {
                             <input
                                 type="email"
                                 name="email"
-                                required
+                                {...register("email", { required: true })}
                                 className=" rounded-md w-full py-3  px-4 bg-white/70"
                                 placeholder="Enter email here.."
                             />
+                            {/* error message */}
+                            <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                {errors.email && (
+                                    <span>{errors.email?.message}</span>
+                                )}
+                                {errors.email?.type === "required" &&
+                                    "Email is required *"}
+                            </label>
                             <label
                                 htmlFor="password"
                                 className="block w-full pb-2  pt-8 font-semibold"
                             >
                                 Password <span className="text-red-600">*</span>
                             </label>
-
-                            <input
-                                type="password"
+                            <Controller
                                 name="password"
-                                required
-                                className="r rounded-md w-full py-3 px-4 bg-white/70"
-                                placeholder="Enter password here.."
+                                control={control}
+                                render={({ field }) => (
+                                    <input
+                                        type="password"
+                                        className="r rounded-md w-full py-3 px-4 bg-white/70"
+                                        placeholder="Enter password here.."
+                                        {...field}
+                                    />
+                                )}
+                                rules={{
+                                    required: "Password is required",
+                                    validate: validatePassword,
+                                }}
                             />
-                            <label className="block md:w-64 w-full text-sm text-red-600">
-                                {/* {showPasswordValidationMessage} */}
-                            </label>
-                            <label className="block md:w-64 w-full  text-sm text-red-600">
-                                {/* {alreadyUsedEmailMessage} */}
+                            {/* error message */}
+                            <label className="block  w-full  text-sm text-[#d63031] pt-1">
+                                {errors.password && (
+                                    <span>{errors.password?.message}</span>
+                                )}
+                                {errors.password?.type === "required" &&
+                                    "Password is required *"}
                             </label>
 
                             <button

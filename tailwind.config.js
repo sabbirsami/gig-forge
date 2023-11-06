@@ -9,6 +9,7 @@ export default {
             white: "#ffffff",
             whiteSecondary: "#b4b4b4",
             black: "#000000",
+            errorColor: "#d63031",
         },
     },
     plugins: [require("daisyui")],

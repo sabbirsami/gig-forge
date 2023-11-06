@@ -1,9 +1,19 @@
 import { useForm, Controller } from "react-hook-form";
 import { BsCheckLg } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./AuthProvider";
+import { updateProfile } from "firebase/auth";
+import auth from "../../firebase.config";
+import toast from "react-hot-toast";
 
 const Register = () => {
+    const { signInWithGoogle, registerUser, setLoading } =
+        useContext(AuthContext);
+    const [buttonLoading, setButtonLoading] = useState(false);
+    const [googleButtonLoading, setGoogleButtonLoading] = useState(false);
+    const [signInWithGoogleError, setSignInWithGoogleError] = useState("");
     const {
         register,
         handleSubmit,
@@ -11,12 +21,91 @@ const Register = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        setLoading(true);
+        setButtonLoading(true);
+
+        const firstName = data.firstName;
+        const lastName = data.lastName;
+        const photoUrl = data.photoUrl;
+        const name = firstName + " " + lastName;
+        console.log(name, photoUrl);
+        const email = data.email;
+        const password = data.password;
+        registerUser(email, password)
+            .then((result) => {
+                console.log(result);
+                setSignInWithGoogleError("");
+                updateProfile(auth.currentUser, {
+                    displayName: name,
+                    photoURL: photoUrl,
+                })
+                    .then(() => {
+                        toast.success("Successfully Register", {
+                            duration: 2000,
+                            className: "mt-32",
+                        });
+                        setSignInWithGoogleError("");
+                        setLoading(false);
+                        setButtonLoading(false);
+                    })
+                    .catch((err) => {
+                        // An error occurred
+                        setSignInWithGoogleError(
+                            err.message.split("(")[1].split("-").join(" ")
+                        );
+                        setButtonLoading(false);
+                        toast.error(" Register fail", {
+                            duration: 2000,
+                            className: "mt-32",
+                        });
+                    });
+            })
+            .catch((err) => {
+                console.log(err.message);
+
+                setSignInWithGoogleError(
+                    err.message.split("(")[1].split("-").join(" ")
+                );
+                setButtonLoading(false);
+                console.log(signInWithGoogleError);
+                toast.error(" Register fail", {
+                    duration: 2000,
+                    className: "mt-32",
+                });
+            });
+        console.log(data);
+    };
     const validatePassword = (value) => {
         if (!/(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}/.test(value)) {
             return "Password must have at least 1 uppercase letter, 1 special character, 1 number, and be at least 8 characters long.";
         }
         return true;
+    };
+    // Sign In With Google
+    const handleSignInWithGoogle = () => {
+        setGoogleButtonLoading(true);
+        signInWithGoogle()
+            .then((result) => {
+                console.log(result);
+                setSignInWithGoogleError("");
+                setGoogleButtonLoading(false);
+                toast.success("Successfully Register", {
+                    duration: 2000,
+                    className: "mt-32",
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+                setSignInWithGoogleError(
+                    err.message.split("(")[1].split("-").join(" ")
+                );
+                setGoogleButtonLoading(false);
+                toast.error(" Register fail", {
+                    duration: 2000,
+                    className: "mt-32",
+                });
+            });
     };
     return (
         <div className="">
@@ -184,21 +273,35 @@ const Register = () => {
                                     "Password is required *"}
                             </label>
 
+                            <label className="block w-full text-sm text-errorColor">
+                                {signInWithGoogleError.split(")")}
+                            </label>
+
                             <button
                                 type="submit"
                                 className="w-full mt-8 py-3 bg-primaryColor hover:shadow-md text-white rounded-md"
                             >
-                                Register
+                                {buttonLoading ? (
+                                    <span className="loading loading-spinner text-white"></span>
+                                ) : (
+                                    <span>Register</span>
+                                )}
                             </button>
                         </form>
                         <div className="divider">OR</div>
                         <button
-                            // onClick={handleSignInWithGoogle}
+                            onClick={handleSignInWithGoogle}
                             type="submit"
-                            className="w-full flex items-center justify-center gap-3 py-3 border border-primaryColor  rounded-md text-dark"
+                            className="w-full  py-3 border border-primaryColor  rounded-md text-dark"
                         >
-                            <FcGoogle className="text-2xl"></FcGoogle>
-                            Register with Google
+                            {googleButtonLoading ? (
+                                <span className="loading loading-spinner text-success"></span>
+                            ) : (
+                                <span className="flex items-center justify-center gap-3">
+                                    <FcGoogle className="text-2xl"></FcGoogle>
+                                    <span>Register with Google</span>
+                                </span>
+                            )}
                         </button>
                         <div className="">
                             <p className=" pt-6">

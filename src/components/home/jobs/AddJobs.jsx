@@ -74,7 +74,7 @@ const AddJobs = () => {
                     className: "mt-32",
                 });
                 setLoading(false);
-                navigate("/posted-job");
+                navigate("/posted-jobs");
                 console.log(result);
             })
             .catch((err) => {

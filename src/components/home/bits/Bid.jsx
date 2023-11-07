@@ -54,7 +54,11 @@ function Bid({ bid }) {
                                         : ""
                                 } ${
                                     bid.status === "in progress"
-                                        ? "text-[#008848]"
+                                        ? "text-[#fa983a]"
+                                        : ""
+                                }${
+                                    bid.status === "complete"
+                                        ? "text-primaryColor"
                                         : ""
                                 } text-sm font-semibold`}
                             >

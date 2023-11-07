@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useQuery } from "react-query";
 import { AuthContext } from "../../auth/AuthProvider";
 import PostedJob from "./PostedJob";
+import emptyBox from "../../../assets/empty.png";
 
 const PostedJobs = () => {
     const { user } = useContext(AuthContext);
@@ -23,14 +24,22 @@ const PostedJobs = () => {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 pb-12 pt-2">
-                    {data?.map((job) => (
-                        <PostedJob
-                            key={job._id}
-                            job={job}
-                            refetch={refetch}
-                            user={user}
-                        ></PostedJob>
-                    ))}
+                    {data.length === 0 ? (
+                        <div className="flex justify-center items-center h-72">
+                            <img src={emptyBox} alt="" />
+                        </div>
+                    ) : (
+                        <div>
+                            {data?.map((job) => (
+                                <PostedJob
+                                    key={job._id}
+                                    job={job}
+                                    refetch={refetch}
+                                    user={user}
+                                ></PostedJob>
+                            ))}
+                        </div>
+                    )}
                 </div>
             )}
         </div>

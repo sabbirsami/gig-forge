@@ -69,9 +69,9 @@ function Navbar() {
                                             </label>
                                             <ul
                                                 tabIndex={0}
-                                                className="menu menu-lg dropdown-content mt-3 z-[1]  p-1 shadow bg-[#FD5631] hover:bg-[#fd3831] hover:shadow-md rounded-box w-24"
+                                                className="menu menu-lg dropdown-content mt-3 z-[1]  p-1 shadow bg-secondaryColor hover:shadow-md rounded-box w-24"
                                             >
-                                                <p className="text-center py-1">
+                                                <p className="text-center py-1 font-bold ">
                                                     <button
                                                         onClick={handleSignOut}
                                                     >

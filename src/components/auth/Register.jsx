@@ -2,7 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import { BsCheckLg } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import { updateProfile } from "firebase/auth";
 import auth from "../../firebase.config";
@@ -21,6 +21,8 @@ const Register = () => {
         control,
         formState: { errors },
     } = useForm();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         setLoading(true);
@@ -46,6 +48,7 @@ const Register = () => {
                             duration: 2000,
                             className: "mt-32",
                         });
+                        navigate(location.state ? location.state : "/");
                         setSignInWithGoogleError("");
                         setLoading(false);
                         setButtonLoading(false);
@@ -92,6 +95,7 @@ const Register = () => {
                 console.log(result);
                 setSignInWithGoogleError("");
                 setGoogleButtonLoading(false);
+                navigate(location.state ? location.state : "/");
                 toast.success("Successfully Register", {
                     duration: 2000,
                     className: "mt-32",

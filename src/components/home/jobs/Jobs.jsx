@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { HiArrowLongRight } from "react-icons/hi2";
+import { MdKeyboardArrowDown } from "react-icons/md";
 import "react-tabs/style/react-tabs.css";
 import Job from "./Job";
 import { Link } from "react-router-dom";
 
 const Jobs = () => {
     const [data, setData] = useState([]);
+    const [seeMore, setSeeMore] = useState(8);
     const [category, setCategory] = useState("web_development");
     const categoryName = category.split("_").join(" ");
     console.log(data);
@@ -27,7 +28,7 @@ const Jobs = () => {
     return (
         <div className="container mx-auto px-6 py-20">
             <Tabs>
-                <TabList className={"relative border-b border-primaryColor"}>
+                <TabList className={"border-b border-primaryColor"}>
                     <Tab onClick={() => setCategory("web_development")}>
                         <span className="capitalize">web development</span>
                     </Tab>
@@ -37,14 +38,6 @@ const Jobs = () => {
                     <Tab onClick={() => setCategory("digital_marketing")}>
                         <span className="capitalize">digital marketing</span>
                     </Tab>
-
-                    <Link
-                        className="absolute right-0 bottom-2 text-sm hover:underline text-primaryColor md:inline-block hidden"
-                        to={`/`}
-                    >
-                        Show All {categoryName} items{" "}
-                        <HiArrowLongRight className="inline" />
-                    </Link>
                 </TabList>
 
                 <TabPanel>
@@ -54,11 +47,24 @@ const Jobs = () => {
                         </div>
                     ) : (
                         <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6 py-12">
-                            {data.slice(0, 4).map((job) => (
+                            {data.slice(0, seeMore).map((job) => (
                                 <Job key={job._id} job={job}></Job>
                             ))}
                         </div>
                     )}
+                    <div className=" text-center mx-auto">
+                        {seeMore < data.length ? (
+                            <button
+                                onClick={() => setSeeMore(data.length)}
+                                className="font-bold"
+                            >
+                                See More
+                                <MdKeyboardArrowDown className="inline text-4xl" />
+                            </button>
+                        ) : (
+                            ""
+                        )}
+                    </div>
                 </TabPanel>
                 <TabPanel>
                     {loading ? (
@@ -67,11 +73,25 @@ const Jobs = () => {
                         </div>
                     ) : (
                         <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6 py-12">
-                            {data.slice(0, 4).map((job) => (
+                            {data.slice(0, seeMore).map((job) => (
                                 <Job key={job._id} job={job}></Job>
                             ))}
                         </div>
                     )}
+
+                    <div className=" text-center mx-auto">
+                        {seeMore < data.length ? (
+                            <button
+                                onClick={() => setSeeMore(data.length)}
+                                className="font-bold"
+                            >
+                                See More
+                                <MdKeyboardArrowDown className="inline text-4xl" />
+                            </button>
+                        ) : (
+                            ""
+                        )}
+                    </div>
                 </TabPanel>
                 <TabPanel>
                     {loading ? (
@@ -80,11 +100,24 @@ const Jobs = () => {
                         </div>
                     ) : (
                         <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6 py-12">
-                            {data.slice(0, 4).map((job) => (
+                            {data.slice(0, seeMore).map((job) => (
                                 <Job key={job._id} job={job}></Job>
                             ))}
                         </div>
                     )}
+                    <div className=" text-center mx-auto">
+                        {seeMore < data.length ? (
+                            <button
+                                onClick={() => setSeeMore(data.length)}
+                                className="font-bold"
+                            >
+                                See More
+                                <MdKeyboardArrowDown className="inline text-4xl" />
+                            </button>
+                        ) : (
+                            ""
+                        )}
+                    </div>
                 </TabPanel>
             </Tabs>
         </div>

@@ -191,19 +191,19 @@ const AddJobs = () => {
                                             className="rounded-md"
                                             value="web_development"
                                         >
-                                            Web Development
+                                            web_development
                                         </option>
                                         <option
                                             className="rounded-md"
                                             value="digital_marketing"
                                         >
-                                            Digital Marketing
+                                            digital_marketing
                                         </option>
                                         <option
                                             className="rounded-md"
                                             value="graphic_design"
                                         >
-                                            Graphic Design
+                                            graphic_design
                                         </option>
                                     </select>
                                     {/* error message for category*/}

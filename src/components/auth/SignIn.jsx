@@ -1,5 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import signInImage from "../../assets/banner/banner-03.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "./AuthProvider";
@@ -12,6 +12,11 @@ const SignIn = () => {
     const [buttonLoading, setButtonLoading] = useState(false);
     const [googleButtonLoading, setGoogleButtonLoading] = useState(false);
     const [signInWithGoogleError, setSignInWithGoogleError] = useState("");
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    console.log(location?.state);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -25,6 +30,7 @@ const SignIn = () => {
                 setSignInWithGoogleError("");
                 setLoading(false);
                 setButtonLoading(false);
+                navigate(location.state ? location.state : "/");
                 toast.success(" Sign In successfully", {
                     duration: 2000,
                     className: "mt-32",
@@ -51,6 +57,7 @@ const SignIn = () => {
                 setSignInWithGoogleError("");
                 setLoading(false);
                 setGoogleButtonLoading(false);
+                navigate(location.state ? location.state : "/");
                 toast.success(" Sign In successfully", {
                     duration: 2000,
                     className: "mt-32",

@@ -13,6 +13,7 @@ function PostedJob({ job, refetch, user }) {
     } = useForm();
     const [updateError, setUpdateError] = useState("");
     const [closeModal, setCloseModal] = useState(true);
+    const [seeMore, setSeeMore] = useState(150);
     console.log(closeModal);
     const handleDelete = () => {
         Swal.fire({
@@ -363,7 +364,21 @@ function PostedJob({ job, refetch, user }) {
                                 {job.title}
                             </h4>
                             <p className="text-sm pt-2 text-black">
-                                {job.short_description}
+                                {job.short_description.slice(0, seeMore)}{" "}
+                                {seeMore <= 150 ? (
+                                    <span
+                                        onClick={() =>
+                                            setSeeMore(
+                                                job.short_description.length
+                                            )
+                                        }
+                                        className="text-primaryColor underline cursor-pointer"
+                                    >
+                                        see more..
+                                    </span>
+                                ) : (
+                                    ""
+                                )}
                             </p>
                         </div>
                         <div className="col-span-1">
@@ -375,7 +390,7 @@ function PostedJob({ job, refetch, user }) {
                             </p>
                         </div>
 
-                        <div className="col-span-1 space-y-3">
+                        <div className="col-span-1 md:space-y-3 flex md:flex-col flex-row justify-between">
                             <div className="">
                                 <p className="text-sm text-whiteSecondary pb-1">
                                     Deadline:
@@ -403,7 +418,7 @@ function PostedJob({ job, refetch, user }) {
                                 </p>
                             </div>
                         </div>
-                        <div className="col-span-1 space-y-3">
+                        <div className="col-span-1 md:space-y-3 flex md:flex-col flex-row justify-between">
                             <div className="">
                                 <p className="text-sm text-whiteSecondary pb-1">
                                     Maximum Price:
@@ -430,7 +445,7 @@ function PostedJob({ job, refetch, user }) {
                                 {job.employer_email}
                             </p>
                         </div>
-                        <div className="col-span-1 space-y-3">
+                        <div className="col-span-1 md:space-y-3 flex md:flex-col flex-row ">
                             <div className="ms-auto text-end">
                                 <button
                                     onClick={handleUpdate}

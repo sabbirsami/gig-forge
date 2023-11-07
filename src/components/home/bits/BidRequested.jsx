@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../auth/AuthProvider";
 import Loading from "../../shared/loading/Loading";
 import BidRequest from "./BidRequest";
+import "react-step-progress-bar/styles.css";
 
 const BidRequested = () => {
     const { user } = useContext(AuthContext);

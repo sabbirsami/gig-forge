@@ -2,21 +2,24 @@ import PropTypes from "prop-types";
 import { AuthContext } from "../../auth/AuthProvider";
 import { useContext } from "react";
 
-function Bid({ bid }) {
+function Bid({ bid, refetch }) {
     const { user } = useContext(AuthContext);
     const userEmail = user?.email;
 
     const handleComplete = () => {
         const status = "complete";
+        const progress = "100";
+        const updatedData = { status, progress };
         fetch(`http://localhost:5000/bits/${userEmail}/${bid._id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify({ status }),
+            body: JSON.stringify({ updatedData }),
         })
             .then((res) => res.json())
             .then((result) => {
+                refetch();
                 console.log(result);
             })
             .catch((err) => {
@@ -94,4 +97,5 @@ function Bid({ bid }) {
 export default Bid;
 Bid.propTypes = {
     bid: PropTypes.object,
+    refetch: PropTypes.func,
 };

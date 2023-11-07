@@ -11,6 +11,8 @@ function PostedJob({ job, refetch, user }) {
         formState: { errors },
     } = useForm();
     const [updateError, setUpdateError] = useState("");
+    const [closeModal, setCloseModal] = useState(true);
+    console.log(closeModal);
     const handleDelete = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -58,6 +60,8 @@ function PostedJob({ job, refetch, user }) {
                     className: "mt-32",
                 });
                 setUpdateError("");
+                setCloseModal(true);
+                refetch();
 
                 console.log(result);
             })
@@ -71,257 +75,282 @@ function PostedJob({ job, refetch, user }) {
             });
     };
     const handleUpdate = () => {
+        setCloseModal(false);
         document.getElementById("my_modal_5").showModal();
+    };
+    const handleCloseButton = () => {
+        setCloseModal(true);
     };
     return (
         <div className="border border-primaryColor rounded-md shadow-md mt-2">
-            <dialog
-                id="my_modal_5"
-                className=" modal-bottom sm:modal-middle rounded-none shadow-none"
-            >
-                <div className="md:p-10 p-3 rounded-none">
-                    <div className="flex justify-between items-center gap-10">
-                        <h3 className="font-bold text-lg">Update Job</h3>
-                        <p className="text-sm opacity-50">
-                            Press{" "}
-                            <span className="bg-whiteSecondary p-1 rounded-md text-xs font-bold">
-                                ESC
-                            </span>{" "}
-                            key or click the button below to close
-                        </p>
-                    </div>
-                    <form className="" onSubmit={handleSubmit(onSubmit)}>
-                        <div className="pb-2 pt-8">
-                            <div className="grid md:grid-cols-2 grid-cols-1 border border-dashed bg-whiteSecondary/10">
-                                <div className=" lg:p-14  md:p-8 p-4 rounded-md">
-                                    <label
-                                        htmlFor="jobTitle"
-                                        className=" mt-6 font-bold text-sm "
-                                    >
-                                        Job Title
-                                    </label>
-                                    <input
-                                        type="text"
-                                        {...register("title", {
-                                            required: true,
-                                        })}
-                                        defaultValue={job.title}
-                                        className="py-4 px-3 w-full mb-6 mt-2 rounded-md"
-                                        placeholder="Job Title"
-                                    />
-                                    {/* error message for title*/}
-                                    <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
-                                        {errors.title && (
-                                            <span>Job Title is required *</span>
-                                        )}
-                                    </label>
-                                    <label
-                                        htmlFor="price"
-                                        className=" mt-6 font-bold text-sm "
-                                    >
-                                        Price
-                                    </label>
-                                    <input
-                                        type="number"
-                                        {...register("price", {
-                                            required: true,
-                                        })}
-                                        defaultValue={job.price}
-                                        className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
-                                        placeholder="Price"
-                                    />
-                                    {/* error message for price */}
-                                    <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
-                                        {errors.price && (
-                                            <span>Price is required *</span>
-                                        )}
-                                    </label>
-
-                                    <label
-                                        htmlFor="email"
-                                        className=" mt-6 font-bold text-sm "
-                                    >
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        {...register("employer_email", {})}
-                                        defaultValue={job.employer_email}
-                                        readOnly
-                                        className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
-                                        placeholder="Email"
-                                    />
-                                    <div className="xl:flex justify-between items-center gap-6">
-                                        <div className=" ">
-                                            <label
-                                                htmlFor="buyerEmail"
-                                                className=" mt-6 font-bold text-sm "
-                                            >
-                                                Deadline
-                                            </label>
-                                            <input
-                                                type="date"
-                                                {...register("deadline", {
-                                                    required: true,
-                                                })}
-                                                defaultValue={job.deadline}
-                                                className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
-                                                placeholder="Deadline"
-                                            />
-                                            {/* error message for deadline*/}
-                                            <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
-                                                {errors.deadline && (
-                                                    <span>
-                                                        Deadline is required *
-                                                    </span>
-                                                )}
-                                            </label>
-                                        </div>
-                                        <div className="grow">
-                                            <label
-                                                htmlFor="category"
-                                                className=" mt-6 font-bold text-sm "
-                                            >
-                                                Category
-                                            </label>
-                                            <select
-                                                name="brand"
-                                                {...register("category", {
-                                                    required: true,
-                                                })}
-                                                defaultValue={job.category}
-                                                className="py-4 px-3 w-full mb-6 mt-2 rounded-md"
-                                                id="pet-select"
-                                            >
-                                                <option
-                                                    className="rounded-md"
-                                                    defaultValue="web_development"
-                                                >
-                                                    Web Development
-                                                </option>
-                                                <option
-                                                    className="rounded-md"
-                                                    defaultValue="digital_marketing"
-                                                >
-                                                    Digital Marketing
-                                                </option>
-                                                <option
-                                                    className="rounded-md"
-                                                    defaultValue="graphic_design"
-                                                >
-                                                    Graphic Design
-                                                </option>
-                                            </select>
-                                            {/* error message for category*/}
-                                            <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
-                                                {errors.category && (
-                                                    <span>
-                                                        Category is required *
-                                                    </span>
-                                                )}
-                                            </label>
-                                            {/* tag */}
-                                        </div>
-                                    </div>
-                                    <label
-                                        htmlFor="price"
-                                        className=" mt-6 font-bold text-sm "
-                                    >
-                                        Minimum Price
-                                    </label>
-                                    <input
-                                        type="number"
-                                        {...register("minimum_price", {
-                                            required: true,
-                                        })}
-                                        defaultValue={job.minimum_price}
-                                        className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
-                                        placeholder="Minimum Price"
-                                    />
-                                    {/* error message for Minimum Price */}
-                                    <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
-                                        {errors.minimum_price && (
-                                            <span>
-                                                Minimum Price is required *
-                                            </span>
-                                        )}
-                                    </label>
-                                </div>
-                                <div className=" border-s border-dashed">
+            {!closeModal && (
+                <dialog
+                    id="my_modal_5"
+                    className=" modal-bottom sm:modal-middle rounded-none shadow-none"
+                >
+                    <div className="md:p-10 p-3 rounded-none">
+                        <div className="flex justify-between items-center gap-10">
+                            <h3 className="font-bold text-lg">Update Job</h3>
+                            <p className="text-sm opacity-50">
+                                Press{" "}
+                                <span className="bg-whiteSecondary p-1 rounded-md text-xs font-bold">
+                                    ESC
+                                </span>{" "}
+                                key or click the button below to close
+                            </p>
+                        </div>
+                        <form className="" onSubmit={handleSubmit(onSubmit)}>
+                            <div className="pb-2 pt-8">
+                                <div className="grid md:grid-cols-2 grid-cols-1 border border-dashed bg-whiteSecondary/10">
                                     <div className=" lg:p-14  md:p-8 p-4 rounded-md">
+                                        <label
+                                            htmlFor="jobTitle"
+                                            className=" mt-6 font-bold text-sm "
+                                        >
+                                            Job Title
+                                        </label>
+                                        <input
+                                            type="text"
+                                            {...register("title", {
+                                                required: true,
+                                            })}
+                                            defaultValue={job.title}
+                                            className="py-4 px-3 w-full mb-6 mt-2 rounded-md"
+                                            placeholder="Job Title"
+                                        />
+                                        {/* error message for title*/}
+                                        <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                            {errors.title && (
+                                                <span>
+                                                    Job Title is required *
+                                                </span>
+                                            )}
+                                        </label>
                                         <label
                                             htmlFor="price"
                                             className=" mt-6 font-bold text-sm "
                                         >
-                                            Maximum Price
+                                            Price
                                         </label>
                                         <input
                                             type="number"
-                                            {...register("maximum_price", {
+                                            {...register("price", {
                                                 required: true,
                                             })}
-                                            defaultValue={job.maximum_price}
+                                            defaultValue={job.price}
                                             className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
-                                            placeholder="Minimum Price"
+                                            placeholder="Price"
                                         />
-                                        {/* error message for  Maximum Price */}
+                                        {/* error message for price */}
                                         <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
-                                            {errors.maximum_price && (
-                                                <span>
-                                                    Maximum Price is required *
-                                                </span>
+                                            {errors.price && (
+                                                <span>Price is required *</span>
                                             )}
                                         </label>
 
                                         <label
-                                            htmlFor="Description"
+                                            htmlFor="email"
                                             className=" mt-6 font-bold text-sm "
                                         >
-                                            Description
+                                            Email
                                         </label>
-                                        <textarea
-                                            name=""
-                                            id=""
-                                            {...register("short_description", {
+                                        <input
+                                            type="email"
+                                            {...register("employer_email", {})}
+                                            defaultValue={job.employer_email}
+                                            readOnly
+                                            className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
+                                            placeholder="Email"
+                                        />
+                                        <div className="xl:flex justify-between items-center gap-6">
+                                            <div className=" ">
+                                                <label
+                                                    htmlFor="buyerEmail"
+                                                    className=" mt-6 font-bold text-sm "
+                                                >
+                                                    Deadline
+                                                </label>
+                                                <input
+                                                    type="date"
+                                                    {...register("deadline", {
+                                                        required: true,
+                                                    })}
+                                                    defaultValue={job.deadline}
+                                                    className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
+                                                    placeholder="Deadline"
+                                                />
+                                                {/* error message for deadline*/}
+                                                <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                                    {errors.deadline && (
+                                                        <span>
+                                                            Deadline is required
+                                                            *
+                                                        </span>
+                                                    )}
+                                                </label>
+                                            </div>
+                                            <div className="grow">
+                                                <label
+                                                    htmlFor="category"
+                                                    className=" mt-6 font-bold text-sm "
+                                                >
+                                                    Category
+                                                </label>
+                                                <select
+                                                    name="brand"
+                                                    {...register("category", {
+                                                        required: true,
+                                                    })}
+                                                    defaultValue={job.category}
+                                                    className="py-4 px-3 w-full mb-6 mt-2 rounded-md"
+                                                    id="pet-select"
+                                                >
+                                                    <option
+                                                        className="rounded-md"
+                                                        defaultValue="web_development"
+                                                    >
+                                                        Web Development
+                                                    </option>
+                                                    <option
+                                                        className="rounded-md"
+                                                        defaultValue="digital_marketing"
+                                                    >
+                                                        Digital Marketing
+                                                    </option>
+                                                    <option
+                                                        className="rounded-md"
+                                                        defaultValue="graphic_design"
+                                                    >
+                                                        Graphic Design
+                                                    </option>
+                                                </select>
+                                                {/* error message for category*/}
+                                                <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                                    {errors.category && (
+                                                        <span>
+                                                            Category is required
+                                                            *
+                                                        </span>
+                                                    )}
+                                                </label>
+                                                {/* tag */}
+                                            </div>
+                                        </div>
+                                        <label
+                                            htmlFor="price"
+                                            className=" mt-6 font-bold text-sm "
+                                        >
+                                            Minimum Price
+                                        </label>
+                                        <input
+                                            type="number"
+                                            {...register("minimum_price", {
                                                 required: true,
                                             })}
-                                            defaultValue={job.short_description}
-                                            placeholder="Description"
-                                            className="py-4 px-3 w-full  mt-2 rounded-md"
-                                            cols="30"
-                                            rows="10"
-                                        ></textarea>
-                                        {/* error message for Description*/}
+                                            defaultValue={job.minimum_price}
+                                            className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
+                                            placeholder="Minimum Price"
+                                        />
+                                        {/* error message for Minimum Price */}
                                         <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
-                                            {errors.short_description && (
+                                            {errors.minimum_price && (
                                                 <span>
-                                                    Description is required *
+                                                    Minimum Price is required *
                                                 </span>
                                             )}
                                         </label>
-                                        <button
-                                            className="w-full bg-primaryColor rounded-md py-4 mt-6 text-white font-bold"
-                                            type="submit"
-                                        >
-                                            {/* {loading ? (
+                                    </div>
+                                    <div className=" border-s border-dashed">
+                                        <div className=" lg:p-14  md:p-8 p-4 rounded-md">
+                                            <label
+                                                htmlFor="price"
+                                                className=" mt-6 font-bold text-sm "
+                                            >
+                                                Maximum Price
+                                            </label>
+                                            <input
+                                                type="number"
+                                                {...register("maximum_price", {
+                                                    required: true,
+                                                })}
+                                                defaultValue={job.maximum_price}
+                                                className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
+                                                placeholder="Minimum Price"
+                                            />
+                                            {/* error message for  Maximum Price */}
+                                            <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                                {errors.maximum_price && (
+                                                    <span>
+                                                        Maximum Price is
+                                                        required *
+                                                    </span>
+                                                )}
+                                            </label>
+
+                                            <label
+                                                htmlFor="Description"
+                                                className=" mt-6 font-bold text-sm "
+                                            >
+                                                Description
+                                            </label>
+                                            <textarea
+                                                name=""
+                                                id=""
+                                                {...register(
+                                                    "short_description",
+                                                    {
+                                                        required: true,
+                                                    }
+                                                )}
+                                                defaultValue={
+                                                    job.short_description
+                                                }
+                                                placeholder="Description"
+                                                className="py-4 px-3 w-full  mt-2 rounded-md"
+                                                cols="30"
+                                                rows="10"
+                                            ></textarea>
+                                            {/* error message for Description*/}
+                                            <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                                {errors.short_description && (
+                                                    <span>
+                                                        Description is required
+                                                        *
+                                                    </span>
+                                                )}
+                                            </label>
+                                            <button
+                                                className="w-full bg-primaryColor rounded-md py-4 mt-6 text-white font-bold"
+                                                type="submit"
+                                            >
+                                                {/* {loading ? (
                                         <span className="loading loading-spinner text-white"></span>
                                     ) : ( */}
-                                            <span> Add job</span>
-                                            {/* )} */}
-                                        </button>
-                                        <div className="text-center mt-6">
-                                            {" "}
-                                            <span className=" text-errorColor text-sm ">
-                                                {updateError}
-                                            </span>
+                                                <span>Update Job</span>
+                                                {/* )} */}
+                                            </button>
+                                            <button
+                                                onClick={handleCloseButton}
+                                                className="w-full border border-primaryColor rounded-md py-4 mt-6 text-primaryColor font-bold"
+                                                type="submit"
+                                            >
+                                                <span>Cancel Update</span>
+                                            </button>
+
+                                            <div className="text-center mt-6">
+                                                {" "}
+                                                <span className=" text-errorColor text-sm ">
+                                                    {updateError}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </dialog>
+                        </form>
+                    </div>
+                </dialog>
+            )}
             <div className="p-4">
                 <div className="grow">
                     <div className="grid lg:grid-cols-7 md:grid-cols-4 justify-between items-start center gap-2">

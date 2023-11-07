@@ -3,6 +3,7 @@ import { AuthContext } from "../../auth/AuthProvider";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const AddJobs = () => {
     const { user } = useContext(AuthContext);
@@ -87,11 +88,14 @@ const AddJobs = () => {
     };
     return (
         <div className="container mx-auto px-6">
+            <Helmet>
+                <title>Gig Forge | Add Jobs</title>
+            </Helmet>
             <h2 className="text-lg font-bold pt-6">Add Job -</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="pb-10 pt-4">
-                    <div className="grid md:grid-cols-2 grid-cols-1 lg:gap-16 md:gap-8 gap-0 bg-whiteSecondary/10">
-                        <div className=" lg:p-14  p-8 rounded-md">
+                    <div className="grid md:grid-cols-2 grid-cols-1  bg-whiteSecondary/10 border border-dashed">
+                        <div className=" lg:p-14  p-8 rounded-md border-e border-dashed">
                             <label
                                 htmlFor="jobTitle"
                                 className=" mt-6 font-bold text-sm "

@@ -4,6 +4,7 @@ import { AuthContext } from "../../auth/AuthProvider";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const JobDetails = () => {
     const { register, handleSubmit } = useForm();
@@ -63,6 +64,9 @@ const JobDetails = () => {
     };
     return (
         <div className="container mx-auto px-6 ">
+            <Helmet>
+                <title>Gig Forge | Job Details</title>
+            </Helmet>
             <div className="grid xl:grid-cols-5 lg:grid-cols-4 xl:gap-0 lg:gap-14 justify-between py-10">
                 <div className=" md:col-span-2 col-span-1 space-y-4">
                     <div className="md:flex gap-10 justify-between items-start">

@@ -7,6 +7,7 @@ import { AuthContext } from "./AuthProvider";
 import { updateProfile } from "firebase/auth";
 import auth from "../../firebase.config";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const { signInWithGoogle, registerUser, setLoading } =
@@ -110,6 +111,9 @@ const Register = () => {
     };
     return (
         <div className="">
+            <Helmet>
+                <title>Gig Forge | Register</title>
+            </Helmet>
             <div className="container mx-auto px-6">
                 <div className="grid md:grid-cols-2 grid-cols-1">
                     <div className="py-10 flex flex-col justify-between">

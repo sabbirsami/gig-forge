@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import errorImage from "../../../assets/errorImage.jpg";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 const ErrorPage = () => {
     return (
         <div className="">
+            <Helmet>
+                <title>Gig Forge | 404</title>
+            </Helmet>
             <div className="h-screen flex justify-center items-center">
                 <div className=" pt-16">
                     <div className=" text-center mx-auto">

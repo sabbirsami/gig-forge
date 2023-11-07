@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
@@ -83,6 +84,9 @@ function PostedJob({ job, refetch, user }) {
     };
     return (
         <div className="border border-primaryColor rounded-md shadow-md mt-2">
+            <Helmet>
+                <title>Gig Forge | Posted Job </title>
+            </Helmet>
             {!closeModal && (
                 <dialog
                     id="my_modal_5"

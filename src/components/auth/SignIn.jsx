@@ -4,6 +4,7 @@ import signInImage from "../../assets/banner/banner-03.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "./AuthProvider";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const SignIn = () => {
     const { signInWithGoogle, setLoading, signInUser } =
@@ -69,6 +70,9 @@ const SignIn = () => {
     };
     return (
         <div className="">
+            <Helmet>
+                <title>Gig Forge | Sign In</title>
+            </Helmet>
             <div className="container mx-auto px-6">
                 <div className="grid md:grid-cols-2 grid-cols-1">
                     <div className="py-10 flex flex-col justify-between">

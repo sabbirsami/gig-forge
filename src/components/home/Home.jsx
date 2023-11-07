@@ -3,6 +3,9 @@ import Banner from "./Banner";
 import Brand from "./Brand";
 import Jobs from "./jobs/Jobs";
 import AppSection from "./AppSection";
+import PostResume from "./PostResume";
+import FindEmployee from "./FindEmployee";
+import Features from "./features/Features";
 
 const Home = () => {
     return (
@@ -13,6 +16,9 @@ const Home = () => {
             <Banner />
             <Brand />
             <Jobs />
+            <FindEmployee />
+            <Features />
+            <PostResume />
             <AppSection />
         </div>
     );

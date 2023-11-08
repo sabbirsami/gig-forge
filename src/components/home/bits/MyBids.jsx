@@ -10,7 +10,7 @@ const MyBids = () => {
     const { user } = useContext(AuthContext);
 
     const userEmail = user?.email;
-    const url = `http://localhost:5000/bits/${userEmail}`;
+    const url = `https://server-site-zeta-red.vercel.app/bits/${userEmail}`;
     const {
         data: bidsData,
         refetch,

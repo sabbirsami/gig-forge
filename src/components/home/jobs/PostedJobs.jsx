@@ -8,9 +8,12 @@ const PostedJobs = () => {
     const { user } = useContext(AuthContext);
 
     const { isLoading, error, data, refetch } = useQuery("postedJobs", () =>
-        fetch(`http://localhost:5000/posted-jobs/${user.email}`, {
-            credentials: "include",
-        })
+        fetch(
+            `https://server-site-zeta-red.vercel.app/posted-jobs/${user.email}`,
+            {
+                credentials: "include",
+            }
+        )
             .then((res) => res.json())
             .catch((err) => {
                 console.log(err);

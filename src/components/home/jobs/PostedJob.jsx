@@ -25,9 +25,12 @@ function PostedJob({ job, refetch, user }) {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/jobs/${user.email}/${job._id}`, {
-                    method: "DELETE",
-                })
+                fetch(
+                    `https://server-site-zeta-red.vercel.app/jobs/${user.email}/${job._id}`,
+                    {
+                        method: "DELETE",
+                    }
+                )
                     .then((res) => res.json())
                     .then((result) => {
                         console.log(result);
@@ -48,13 +51,16 @@ function PostedJob({ job, refetch, user }) {
         const tags = job.tags;
         const updatedJobs = { ...data, status, packageItems, tags };
         console.log(updatedJobs);
-        fetch(`http://localhost:5000/jobs/${user.email}/${job._id}`, {
-            method: "PUT",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(updatedJobs),
-        })
+        fetch(
+            `https://server-site-zeta-red.vercel.app/jobs/${user.email}/${job._id}`,
+            {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(updatedJobs),
+            }
+        )
             .then((res) => res.json())
             .then((result) => {
                 toast.success("Successfully updated job", {

@@ -8,15 +8,18 @@ const BidRequest = ({ bid, refetch, user }) => {
     const handleAcceptButton = () => {
         const status = "in progress";
         console.log(
-            `http://localhost:5000/bits-request/${user.email}/${bid._id}`
+            `https://server-site-zeta-red.vercel.app/bits-request/${user.email}/${bid._id}`
         );
-        fetch(`http://localhost:5000/bits-request/${user.email}/${bid._id}`, {
-            method: "PATCH",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({ status }),
-        })
+        fetch(
+            `https://server-site-zeta-red.vercel.app/bits-request/${user.email}/${bid._id}`,
+            {
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify({ status }),
+            }
+        )
             .then((res) => res.json())
             .then((result) => {
                 refetch();
@@ -34,13 +37,16 @@ const BidRequest = ({ bid, refetch, user }) => {
     };
     const handleRejectButton = () => {
         const status = "canceled";
-        fetch(`http://localhost:5000/bits-request/${user.email}/${bid._id}`, {
-            method: "PATCH",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({ status }),
-        })
+        fetch(
+            `https://server-site-zeta-red.vercel.app/bits-request/${user.email}/${bid._id}`,
+            {
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify({ status }),
+            }
+        )
             .then((res) => res.json())
             .then((result) => {
                 refetch();

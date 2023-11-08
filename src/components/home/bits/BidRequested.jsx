@@ -10,7 +10,7 @@ import "react-step-progress-bar/styles.css";
 const BidRequested = () => {
     const { user } = useContext(AuthContext);
     const userEmail = user?.email;
-    const url = `http://localhost:5000/bits-requests/${userEmail}`;
+    const url = `https://server-site-zeta-red.vercel.app/bits-requests/${userEmail}`;
     const {
         data: bidRequests,
         isLoading,
@@ -25,6 +25,7 @@ const BidRequested = () => {
     if (isLoading) {
         return <Loading />;
     }
+
     console.log(bidRequests);
     return (
         <div className="container mx-auto px-6">
@@ -38,7 +39,7 @@ const BidRequested = () => {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 pb-12 pt-2">
-                    {bidRequests.length === 0 ? (
+                    {bidRequests?.length === 0 ? (
                         <div className="flex justify-center items-center h-72">
                             <img src={emptyBox} alt="" />
                         </div>

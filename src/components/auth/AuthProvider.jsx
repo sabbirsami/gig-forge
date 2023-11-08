@@ -37,23 +37,31 @@ function AuthProvider({ children }) {
     };
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            const userEmail = currentUser?.email || user?.email;
+            const userEmail = currentUser.email || user.email;
             const currentUserEmail = { email: userEmail };
             setUser(currentUser);
             setLoading(false);
             if (currentUser) {
                 axios
-                    .post(`http://localhost:5000/jwt`, currentUserEmail, {
-                        withCredentials: true,
-                    })
+                    .post(
+                        `https://server-site-zeta-red.vercel.app/jwt`,
+                        currentUserEmail,
+                        {
+                            withCredentials: true,
+                        }
+                    )
                     .then((res) => {
                         console.log("response token", res.data);
                     });
             } else {
                 axios
-                    .post("http://localhost:5000/logout", currentUserEmail, {
-                        withCredentials: true,
-                    })
+                    .post(
+                        "https://server-site-zeta-red.vercel.app/logout",
+                        currentUserEmail,
+                        {
+                            withCredentials: true,
+                        }
+                    )
                     .then((res) => {
                         console.log("response token", res.data);
                     });

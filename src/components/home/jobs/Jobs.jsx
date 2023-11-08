@@ -16,7 +16,7 @@ const Jobs = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios(`http://localhost:5000/jobs/${category}`)
+        axios(`https://server-site-zeta-red.vercel.app/jobs/${category}`)
             .then((data) => {
                 setData(data.data);
                 setLoading(false);

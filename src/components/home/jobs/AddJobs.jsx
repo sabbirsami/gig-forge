@@ -61,7 +61,7 @@ const AddJobs = () => {
             employer_email,
         };
         console.log(addedJob);
-        fetch(`http://localhost:5000/jobs`, {
+        fetch(`https://server-site-zeta-red.vercel.app/jobs`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

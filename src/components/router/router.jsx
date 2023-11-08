@@ -69,7 +69,9 @@ const router = createBrowserRouter([
                     </PrivateRoute>
                 ),
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/job/${params.id}`),
+                    fetch(
+                        `https://server-site-zeta-red.vercel.app/job/${params.id}`
+                    ),
             },
         ],
     },

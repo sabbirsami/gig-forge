@@ -10,13 +10,16 @@ function Bid({ bid, refetch }) {
         const status = "complete";
         const progress = "100";
         const updatedData = { status, progress };
-        fetch(`http://localhost:5000/bits/${userEmail}/${bid._id}`, {
-            method: "PATCH",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({ updatedData }),
-        })
+        fetch(
+            `https://server-site-zeta-red.vercel.app/bits/${userEmail}/${bid._id}`,
+            {
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify({ updatedData }),
+            }
+        )
             .then((res) => res.json())
             .then((result) => {
                 refetch();

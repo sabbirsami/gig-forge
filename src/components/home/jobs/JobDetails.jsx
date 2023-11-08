@@ -25,6 +25,7 @@ const JobDetails = () => {
         packageItems,
         tags,
     } = data[0];
+    console.log(data);
 
     const onSubmit = (formData) => {
         setLoading(true);
@@ -42,7 +43,7 @@ const JobDetails = () => {
         };
         console.log(bitData);
         axios
-            .post("http://localhost:5000/bits", bitData, {
+            .post("https://server-site-zeta-red.vercel.app/bits", bitData, {
                 withCredentials: true,
             })
             .then(function (response) {

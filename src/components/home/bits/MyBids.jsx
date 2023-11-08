@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../auth/AuthProvider";
-
+import emptyBox from "../../../assets/empty.png";
 import Bid from "./Bid";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "react-query";
@@ -38,9 +38,24 @@ const MyBids = () => {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 pb-12 pt-2">
-                    {bidsData.map((bid) => (
+                    {bidsData.length === 0 ? (
+                        <div className="flex justify-center items-center h-72">
+                            <img src={emptyBox} alt="" />
+                        </div>
+                    ) : (
+                        <div>
+                            {bidsData?.map((bid) => (
+                                <Bid
+                                    key={bid._id}
+                                    bid={bid}
+                                    refetch={refetch}
+                                ></Bid>
+                            ))}
+                        </div>
+                    )}
+                    {/* {bidsData.map((bid) => (
                         <Bid key={bid._id} refetch={refetch} bid={bid}></Bid>
-                    ))}
+                    ))} */}
                 </div>
             )}
         </div>

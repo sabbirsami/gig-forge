@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+// import { BsBoxArrowUpRight } from "react-icons/bs";
 import logo from "../../../assets/logo2.jpg";
 import logo2 from "../../../assets/logo.png";
 
@@ -44,28 +45,48 @@ const Footer = () => {
                             </span>{" "}
                         </p>
                     </div>
-                    <div className="flex items-center md:justify-end justify-start gap-3">
-                        <a
-                            rel="noreferrer"
-                            target="_blank"
-                            href={"https://github.com/sabbirsami"}
-                            className="rounded-0 border border-[#4a4a4a] hover:border-primaryColor hover:bg-primaryColor hover:text-white  text-lg border-1 p-3  flex justify-center items-center"
-                        >
-                            <FaGithub className="inline text-2xl font-semibold m-0.5" />
-                        </a>
-                        <a
-                            rel="noreferrer"
-                            target="_blank"
-                            href={
-                                "https://www.linkedin.com/in/sabbir-mohammad-sami/"
-                            }
-                            className="rounded-0 border border-[#4a4a4a]  hover:bg-primaryColor hover:border-primaryColor hover:text-white  text-lg border-1 p-3  flex justify-center items-start"
-                        >
-                            <FaLinkedinIn className="inline text-2xl font-semibold" />{" "}
-                            <span className="ms-2 font-semibold mb-0">
-                                Linkedin
+
+                    <div className="flex flex-col">
+                        <div className="flex items-center md:justify-end justify-start gap-3">
+                            <a
+                                rel="noreferrer"
+                                target="_blank"
+                                href={"https://github.com/sabbirsami"}
+                                className="rounded-0 border border-[#4a4a4a] hover:border-primaryColor hover:bg-primaryColor hover:text-white  text-lg border-1 p-3  flex justify-center items-center"
+                            >
+                                <FaGithub className="inline text-2xl font-semibold m-0.5" />
+                            </a>
+                            <a
+                                rel="noreferrer"
+                                target="_blank"
+                                href={
+                                    "https://www.linkedin.com/in/sabbir-mohammad-sami/"
+                                }
+                                className="rounded-0 border border-[#4a4a4a]  hover:bg-primaryColor hover:border-primaryColor hover:text-white  text-lg border-1 p-3  flex justify-center items-start"
+                            >
+                                <FaLinkedinIn className="inline text-2xl font-semibold" />{" "}
+                                <span className="ms-2 font-semibold mb-0">
+                                    Linkedin
+                                </span>
+                            </a>
+                        </div>
+                        <div className="ms-auto pt-3">
+                            <span className="inline-block">
+                                <a
+                                    rel="noreferrer"
+                                    target="_blank"
+                                    href={
+                                        "https://www.linkedin.com/in/sabbir-mohammad-sami/"
+                                    }
+                                    className="rounded-0 border border-dashed border-[#4a4a4a]  hover:bg-primaryColor hover:border-primaryColor hover:text-white  text-lg border-1 p-3  flex justify-center items-start"
+                                >
+                                    <span className="ms-.5 pe-1 font-semibold mb-0">
+                                        Developer portfolio
+                                    </span>
+                                    {/* <BsBoxArrowUpRight className="inline text-2xl font-semibold hover:block" />{" "} */}
+                                </a>
                             </span>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>

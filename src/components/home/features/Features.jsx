@@ -29,7 +29,7 @@ const Features = () => {
     ];
     return (
         <div className="container mx-auto px-6 pb-32">
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
                 {features.map((feature) => (
                     <Feature key={feature.id} feature={feature}></Feature>
                 ))}

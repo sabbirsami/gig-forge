@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 
 const JobDetails = () => {
     const { register, handleSubmit } = useForm();
@@ -164,10 +165,11 @@ const JobDetails = () => {
                             >
                                 Price
                             </label>
-                            <input
+                            <motion.input
+                                whileFocus={{ outline: "4px solid #D2F2E3" }}
                                 type="number"
                                 {...register("bitPrice", { required: true })}
-                                className="py-4 px-3 w-full mb-6 mt-2 rounded-md"
+                                className="py-4 px-3 w-full mb-6 mt-2 rounded-md border-0"
                                 placeholder="Price(your bidding amount)"
                             />
                             <label
@@ -176,7 +178,8 @@ const JobDetails = () => {
                             >
                                 Deadline
                             </label>
-                            <input
+                            <motion.input
+                                whileFocus={{ outline: "4px solid #D2F2E3" }}
                                 type="date"
                                 className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
                                 placeholder="Deadline"
@@ -210,7 +213,11 @@ const JobDetails = () => {
                                 placeholder="Buyer Email"
                             />
                         </div>
-                        <button
+                        <motion.button
+                            whileHover={{
+                                translateY: "-2px",
+                                boxShadow: "0px 5px 10px #c8d6e5",
+                            }}
                             className={`w-full bg-primaryColor rounded-md py-4 mt-6 disable text-white font-bold disabled:opacity-75`}
                             type="submit"
                             disabled={employer_email === user?.email}
@@ -220,7 +227,7 @@ const JobDetails = () => {
                             ) : (
                                 <span> Bid on the project</span>
                             )}
-                        </button>
+                        </motion.button>
                     </form>
                 </div>
             </div>

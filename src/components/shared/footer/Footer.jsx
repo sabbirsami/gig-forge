@@ -2,6 +2,7 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 // import { BsBoxArrowUpRight } from "react-icons/bs";
 import logo from "../../../assets/logo2.jpg";
 import logo2 from "../../../assets/logo.png";
+import { motion } from "framer-motion";
 
 const Footer = () => {
     return (
@@ -48,15 +49,27 @@ const Footer = () => {
 
                     <div className="flex flex-col">
                         <div className="flex items-center md:justify-end justify-start gap-3">
-                            <a
+                            <motion.a
+                                whileHover={{ scale: 1.1 }}
+                                transition={{
+                                    type: "spring",
+                                    // stiffness: 400,
+                                    damping: 10,
+                                }}
                                 rel="noreferrer"
                                 target="_blank"
                                 href={"https://github.com/sabbirsami"}
                                 className="rounded-0 border border-[#4a4a4a] hover:border-primaryColor hover:bg-primaryColor hover:text-white  text-lg border-1 p-3  flex justify-center items-center"
                             >
                                 <FaGithub className="inline text-2xl font-semibold m-0.5" />
-                            </a>
-                            <a
+                            </motion.a>
+                            <motion.a
+                                whileHover={{ scale: 1.1 }}
+                                transition={{
+                                    type: "spring",
+                                    // stiffness: 400,
+                                    damping: 10,
+                                }}
                                 rel="noreferrer"
                                 target="_blank"
                                 href={
@@ -68,10 +81,18 @@ const Footer = () => {
                                 <span className="ms-2 font-semibold mb-0">
                                     Linkedin
                                 </span>
-                            </a>
+                            </motion.a>
                         </div>
                         <div className="ms-auto pt-3">
-                            <span className="inline-block">
+                            <motion.span
+                                className="inline-block"
+                                whileHover={{ scale: 1.1 }}
+                                transition={{
+                                    type: "spring",
+                                    // stiffness: 400,
+                                    damping: 10,
+                                }}
+                            >
                                 <a
                                     rel="noreferrer"
                                     target="_blank"
@@ -85,7 +106,7 @@ const Footer = () => {
                                     </span>
                                     {/* <BsBoxArrowUpRight className="inline text-2xl font-semibold hover:block" />{" "} */}
                                 </a>
-                            </span>
+                            </motion.span>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Job({ job }) {
     const [seeMore, setSeeMore] = useState(120);
@@ -55,13 +56,22 @@ function Job({ job }) {
                         <p className="p-2 text-primaryColor font-bold">
                             ${job.price}
                         </p>
-                        <Link
-                            to={`/job/${job._id}`}
-                            className="text-sm rounded-full bg-secondaryColor py-2 ps-4 pe-3 font-semibold text-[#008848]"
+                        <motion.span
+                            whileHover={{ scale: 1.1 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 10,
+                            }}
                         >
-                            Bid now{" "}
-                            <MdOutlineArrowForwardIos className="inline mb-0.5" />
-                        </Link>
+                            <Link
+                                to={`/job/${job._id}`}
+                                className="text-sm rounded-full bg-secondaryColor py-2 ps-4 pe-3 font-semibold text-[#008848]"
+                            >
+                                Bid now{" "}
+                                <MdOutlineArrowForwardIos className="inline mb-0.5" />
+                            </Link>
+                        </motion.span>
                     </div>
                 </div>
             </div>

@@ -4,13 +4,12 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import "react-tabs/style/react-tabs.css";
 import Job from "./Job";
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Jobs = () => {
     const [data, setData] = useState([]);
     const [seeMore, setSeeMore] = useState(8);
     const [category, setCategory] = useState("web_development");
-    const categoryName = category.split("_").join(" ");
     console.log(data);
     const [loading, setLoading] = useState(false);
 
@@ -107,13 +106,23 @@ const Jobs = () => {
                     )}
                     <div className=" text-center mx-auto">
                         {seeMore < data.length ? (
-                            <button
-                                onClick={() => setSeeMore(data.length)}
-                                className="font-bold"
+                            <motion.span
+                                whileHover={{ scale: 1.1 }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 10,
+                                }}
                             >
-                                See More
-                                <MdKeyboardArrowDown className="inline text-4xl" />
-                            </button>
+                                <button
+                                    className="font-bold"
+                                    onClick={() => setSeeMore(data.length)}
+                                >
+                                    {" "}
+                                    See More
+                                    <MdKeyboardArrowDown className="inline text-4xl" />
+                                </button>
+                            </motion.span>
                         ) : (
                             ""
                         )}

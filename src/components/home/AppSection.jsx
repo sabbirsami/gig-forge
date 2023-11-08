@@ -2,7 +2,7 @@ import appImage from "../../assets/app.svg";
 
 const AppSection = () => {
     return (
-        <div className="container mx-auto px-6 pb-32">
+        <div className="container mx-auto px-6 pb-16">
             <div className="grid xl:grid-cols-3 lg:grid-cols-2   bg-whiteSecondary/10 md:px-20 px-7 md:pt-20 pt-10 rounded-lg justify-between items-end">
                 <div className="col-span-1">
                     <div className="md:pb-20 pb-10">

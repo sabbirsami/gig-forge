@@ -1,6 +1,7 @@
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import find from "../../assets/find.svg";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const FindEmployee = () => {
     return (
@@ -20,12 +21,22 @@ const FindEmployee = () => {
                         skills, a passion for helping others, and a desire to be
                         part of a growing company, we want to hear from you! */}
                     </p>
+
                     <Link
                         to={"/add-job"}
                         className="capitalize border-2 border-primaryColor bg-primaryColor rounded-full text-white py-3 md:px-8 px-4 inline-block md:gap-5 gap-2 md:text-base text-sm"
                     >
-                        Add Job Post{" "}
-                        <MdOutlineArrowForwardIos className="inline pb-0.5" />
+                        <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 10,
+                            }}
+                        >
+                            Add Job Post{" "}
+                            <MdOutlineArrowForwardIos className="inline pb-0.5" />
+                        </motion.div>
                     </Link>
                 </div>
 

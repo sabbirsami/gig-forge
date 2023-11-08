@@ -42,7 +42,9 @@ const JobDetails = () => {
         };
         console.log(bitData);
         axios
-            .post("http://localhost:5000/bits", bitData)
+            .post("http://localhost:5000/bits", bitData, {
+                withCredentials: true,
+            })
             .then(function (response) {
                 // handle success
                 toast.success("Successfully Bid on the project", {

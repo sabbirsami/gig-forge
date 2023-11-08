@@ -8,7 +8,9 @@ const PostedJobs = () => {
     const { user } = useContext(AuthContext);
 
     const { isLoading, error, data, refetch } = useQuery("postedJobs", () =>
-        fetch(`http://localhost:5000/posted-jobs/${user.email}`)
+        fetch(`http://localhost:5000/posted-jobs/${user.email}`, {
+            credentials: "include",
+        })
             .then((res) => res.json())
             .catch((err) => {
                 console.log(err);

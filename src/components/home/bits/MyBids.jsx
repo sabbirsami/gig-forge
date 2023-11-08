@@ -16,7 +16,7 @@ const MyBids = () => {
         refetch,
         isLoading,
     } = useQuery("bidsData", () =>
-        fetch(url)
+        fetch(url, { credentials: "include" })
             .then((res) => res.json())
             .catch((err) => console.log(err))
     );

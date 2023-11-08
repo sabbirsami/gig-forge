@@ -2,7 +2,7 @@ import save from "../../../assets/palestine.png";
 
 const SavePalestine = () => {
     return (
-        <div className="container mx-auto px-6 pb-32">
+        <div className="container mx-auto px-6 pb-16">
             <div className="grid xl:grid-cols-3 lg:grid-cols-3   border-b md:px-4 px-2 pt-10 border-dashed justify-between items-end">
                 <div className="col-span-1 order-1">
                     <div className="lg:pb-20 pb-5">

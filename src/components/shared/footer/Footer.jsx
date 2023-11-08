@@ -76,7 +76,7 @@ const Footer = () => {
                                     rel="noreferrer"
                                     target="_blank"
                                     href={
-                                        "https://www.linkedin.com/in/sabbir-mohammad-sami/"
+                                        "https://sabbir-mohammad-sami.web.app/"
                                     }
                                     className="rounded-0 border border-dashed border-[#4a4a4a]  hover:bg-primaryColor hover:border-primaryColor hover:text-white  text-lg border-1 p-3  flex justify-center items-start"
                                 >

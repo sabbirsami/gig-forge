@@ -13,9 +13,20 @@ const AddJobs = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    // navigate user when successfully login
     const navigate = useNavigate();
 
+    // get today date
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let yyyy = String(today.getFullYear());
+    today = yyyy + "-" + mm + "-" + dd;
+
     const [loading, setLoading] = useState(false);
+    const [tagErrorMessage, setTagErrorMessage] = useState("");
+    const [dateErrorMessage, setDateErrorMessage] = useState("");
+
     const employer_email = user.email;
     const status = "pending";
     const defaultTags = [
@@ -26,7 +37,6 @@ const AddJobs = () => {
     ];
 
     const [tagsAdd, setTags] = useState([]);
-    console.log(tagsAdd);
     const [inputValue, setInputValue] = useState("");
 
     const handleInputChange = (e) => {
@@ -37,6 +47,7 @@ const AddJobs = () => {
         if (inputValue.trim() !== "") {
             setTags([...tagsAdd, inputValue.trim()]);
             setInputValue("");
+            setTagErrorMessage("");
         }
     };
 
@@ -60,61 +71,99 @@ const AddJobs = () => {
     // Submit form
     const onSubmit = (data) => {
         setLoading(true);
-        const {
-            title,
-            category,
-            deadline,
-            maximum_price,
-            minimum_price,
-            price,
-            short_description,
-        } = data;
-        const addedJob = {
-            title,
-            category,
-            deadline,
-            maximum_price,
-            minimum_price,
-            price,
-            short_description,
-            packageItems,
-            tags: tagsAdd.length !== 0 ? tagsAdd : defaultTags,
-            status,
-            employer_email,
-        };
+        if (tagsAdd.length === 0) {
+            setTagErrorMessage("Please at least 1 tag *");
+            setLoading(false);
+        } else {
+            setTagErrorMessage("");
 
-        console.log(addedJob);
-        fetch(`http://localhost:5000/jobs`, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(addedJob),
-        })
-            .then((res) => res.json())
-            .then((result) => {
-                toast.success("Successfully job added", {
-                    duration: 2000,
-                    className: "mt-32",
-                });
+            const deadlineDay = parseFloat(data.deadline.split("-")[2]);
+            const deadlineMonth = parseFloat(data.deadline.split("-")[1]);
+            const deadlineYear = parseFloat(data.deadline.split("-")[0]);
+            const todayDay = parseFloat(today.split("-")[2]);
+            const todayMonth = parseFloat(today.split("-")[1]);
+            const todayYear = parseFloat(today.split("-")[0]);
+            console.log(
+                deadlineDay,
+                deadlineMonth,
+                deadlineYear,
+                todayDay,
+                todayMonth,
+                todayYear
+            );
+
+            if (deadlineYear >= todayYear) {
+                if (deadlineMonth >= todayMonth) {
+                    if (deadlineDay >= todayDay) {
+                        console.log("ok");
+                        setDateErrorMessage("");
+                        const {
+                            title,
+                            category,
+                            deadline,
+                            maximum_price,
+                            minimum_price,
+                            price,
+                            short_description,
+                        } = data;
+                        const addedJob = {
+                            title,
+                            category,
+                            deadline,
+                            maximum_price,
+                            minimum_price,
+                            price,
+                            short_description,
+                            packageItems,
+                            tags: tagsAdd.length !== 0 ? tagsAdd : defaultTags,
+                            status,
+                            employer_email,
+                        };
+                        fetch(`https://server-site-zeta-red.vercel.app/jobs`, {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json",
+                            },
+                            body: JSON.stringify(addedJob),
+                        })
+                            .then((res) => res.json())
+                            .then((result) => {
+                                toast.success("Successfully job added", {
+                                    duration: 2000,
+                                    className: "mt-32",
+                                });
+                                setLoading(false);
+                                // navigate user when successfully login
+                                navigate("/posted-jobs");
+                                console.log(result);
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                                toast.error("  Fail to add job", {
+                                    duration: 2000,
+                                    className: "mt-32",
+                                });
+                            });
+                    } else {
+                        setDateErrorMessage("please provide a valid day");
+                        setLoading(false);
+                    }
+                } else {
+                    setDateErrorMessage("please provide a valid month");
+                    setLoading(false);
+                }
+            } else {
+                setDateErrorMessage("please provide a valid year");
                 setLoading(false);
-                navigate("/posted-jobs");
-                console.log(result);
-            })
-            .catch((err) => {
-                console.log(err);
-                toast.error("  Fail to add job", {
-                    duration: 2000,
-                    className: "mt-32",
-                });
-            });
+            }
+        }
     };
     return (
         <div className="container mx-auto px-6">
             <Helmet>
                 <title>Gig Forge | Add Jobs</title>
             </Helmet>
-            <h2 className="text-lg font-bold pt-6">Add Job -</h2>
+            <h2 className="text-lg font-bold pt-2">Add Job -</h2>
             <div className="pb-10 pt-4">
                 <div className=" bg-whiteSecondary/10 border border-dashed">
                     <div>
@@ -131,7 +180,7 @@ const AddJobs = () => {
                                 </label>
                                 <input
                                     type="text"
-                                    {...register("title", {})}
+                                    {...register("title", { required: true })}
                                     className="py-4 px-3 w-full mb-6 mt-2 rounded-md"
                                     placeholder="Job Title"
                                 />
@@ -193,12 +242,15 @@ const AddJobs = () => {
                                             placeholder="Deadline"
                                         />
                                         {/* error message for deadline*/}
-                                        <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                        <label className="block md:w-64 w-full  text-sm text-[#d63031]">
                                             {errors.deadline && (
                                                 <span>
                                                     Deadline is required *
                                                 </span>
                                             )}
+                                        </label>
+                                        <label className="block md:w-64 w-full  text-sm text-[#d63031]">
+                                            {dateErrorMessage}
                                         </label>
                                     </div>
                                     <div className="grow">
@@ -350,14 +402,20 @@ const AddJobs = () => {
                         </div>
                         <div className="grid md:grid-cols-2 grid-cols-1 me-24">
                             <div className="flex grid-cols-2  gap-4">
-                                <input
-                                    type="text"
-                                    value={inputValue}
-                                    onChange={handleInputChange}
-                                    placeholder="Add a tag"
-                                    className="py-4 px-3 w-full rounded-md grow "
-                                />
-                                <div className="inline-block">
+                                <div className="w-full">
+                                    <input
+                                        type="text"
+                                        value={inputValue}
+                                        onChange={handleInputChange}
+                                        placeholder="Add a tag"
+                                        className="py-4 px-3 w-full rounded-md grow "
+                                    />
+                                    <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
+                                        <span>{tagErrorMessage}</span>
+                                    </label>
+                                </div>
+
+                                <div className="inline-block me-2">
                                     <button
                                         onClick={handleAddTag}
                                         className="border border-dashed rounded-md py-3.5 px-2.5 w-40"

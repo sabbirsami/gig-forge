@@ -29,7 +29,7 @@ const PostedJobs = () => {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 pb-12 pt-2">
-                    {data.length === 0 ? (
+                    {data?.length === 0 ? (
                         <div className="flex justify-center items-center h-72">
                             <img src={emptyBox} alt="" />
                         </div>

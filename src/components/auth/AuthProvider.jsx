@@ -53,7 +53,8 @@ function AuthProvider({ children }) {
                     .then((res) => {
                         console.log("response token", res.data);
                     });
-            } else {
+            }
+            if (!currentUser) {
                 axios
                     .post(
                         "https://server-site-zeta-red.vercel.app/logout",
@@ -70,7 +71,7 @@ function AuthProvider({ children }) {
         return () => {
             unSubscribe();
         };
-    }, []);
+    }, [user?.email]);
     const data = {
         loading,
         setLoading,

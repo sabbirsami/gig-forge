@@ -5,11 +5,11 @@ import SignIn from "../auth/SignIn";
 import Register from "../auth/Register";
 import ErrorPage from "../shared/errorPage/ErrorPage";
 import JobDetails from "../home/jobs/JobDetails";
-import AddJobs from "../home/jobs/AddJobs";
 import MyBids from "../home/bits/MyBids";
 import PrivateRoute from "../shared/privateRoute/PrivateRoute";
 import PostedJobs from "../home/jobs/PostedJobs";
 import BidRequested from "../home/bits/BidRequested";
+import AddJobs from "../home/jobs/addJobs/AddJobs";
 
 const router = createBrowserRouter([
     {

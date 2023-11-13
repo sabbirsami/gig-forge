@@ -14,7 +14,21 @@ function PostedJob({ job, refetch, user }) {
     const [updateError, setUpdateError] = useState("");
     const [closeModal, setCloseModal] = useState(true);
     const [seeMore, setSeeMore] = useState(150);
-    console.log(closeModal);
+
+    // get today date
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let yyyy = String(today.getFullYear());
+    today = yyyy + "-" + mm + "-" + dd;
+    // get date as number
+    const deadlineDay = parseFloat(job.deadline.split("-")[2]);
+    const deadlineMonth = parseFloat(job.deadline.split("-")[1]);
+    const deadlineYear = parseFloat(job.deadline.split("-")[0]);
+    const todayDay = parseFloat(today.split("-")[2]);
+    const todayMonth = parseFloat(today.split("-")[1]);
+    const todayYear = parseFloat(today.split("-")[0]);
+
     const handleDelete = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -401,9 +415,31 @@ function PostedJob({ job, refetch, user }) {
                                 <p className="text-sm text-whiteSecondary pb-1">
                                     Deadline:
                                 </p>
-                                <p className="text-xs font-bold">
-                                    {job.deadline}
-                                </p>
+                                {deadlineYear <= todayYear ? (
+                                    <span>
+                                        {deadlineMonth <= todayMonth ? (
+                                            <p className="text-xs  font-bold">
+                                                {deadlineDay <= todayDay ? (
+                                                    <span className="text-errorColor ">
+                                                        {job.deadline}
+                                                    </span>
+                                                ) : (
+                                                    <span className="">
+                                                        {job.deadline}
+                                                    </span>
+                                                )}
+                                            </p>
+                                        ) : (
+                                            <p className="text-xs text-errorColor font-bold">
+                                                {job.deadline}
+                                            </p>
+                                        )}
+                                    </span>
+                                ) : (
+                                    <p className="text-xs text-errorColor font-bold">
+                                        {job.deadline}
+                                    </p>
+                                )}
                             </div>
                             <div className="">
                                 <p className="text-sm text-whiteSecondary pb-1">

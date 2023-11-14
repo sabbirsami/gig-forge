@@ -104,12 +104,14 @@ const AddJobs = () => {
                             maximum_price,
                             minimum_price,
                             price,
+                            postDate,
                             short_description,
                         } = data;
                         const addedJob = {
                             title,
                             category,
                             deadline,
+                            postDate,
                             maximum_price,
                             minimum_price,
                             price,
@@ -165,7 +167,7 @@ const AddJobs = () => {
             </Helmet>
             <h2 className="text-lg font-bold pt-2">Add Job -</h2>
             <div className="pb-10 pt-4">
-                <div className=" bg-whiteSecondary/10 border border-dashed">
+                <div className=" bg-whiteSecondary/10 border border-dashed p-2">
                     <div>
                         <form
                             onSubmit={handleSubmit(onSubmit)}
@@ -333,7 +335,7 @@ const AddJobs = () => {
                                             required: true,
                                         })}
                                         className="py-4 px-3 w-full mb-6  mt-2 rounded-md"
-                                        placeholder="Minimum Price"
+                                        placeholder="Maximum Price"
                                     />
                                     {/* error message for  Maximum Price */}
                                     <label className="block md:w-64 w-full  text-sm text-[#d63031] ">
@@ -343,6 +345,21 @@ const AddJobs = () => {
                                             </span>
                                         )}
                                     </label>
+                                    <label
+                                        htmlFor="postDate"
+                                        className=" mt-6 font-bold text-sm "
+                                    >
+                                        Post Date
+                                    </label>
+                                    <input
+                                        type="text"
+                                        {...register("postDate", {
+                                            required: true,
+                                        })}
+                                        value={today}
+                                        readOnly
+                                        className="py-4 px-3 w-full mb-6  mt-2 rounded-md text-black/70"
+                                    />
 
                                     <label
                                         htmlFor="Description"
@@ -359,7 +376,7 @@ const AddJobs = () => {
                                         placeholder="Description"
                                         className="py-4 px-3 w-full  mt-1.5 rounded-md"
                                         cols="30"
-                                        rows="12"
+                                        rows="8"
                                     ></textarea>
                                     {/* error message for Description*/}
                                     <label className="block md:w-64 w-full  text-sm text-[#d63031] pt-1">
@@ -384,7 +401,7 @@ const AddJobs = () => {
                         </form>
                     </div>
                     {/* ---------------------- */}
-                    <div className="px-14 pb-14">
+                    <div className="lg:px-14 md:px-8 pb-14">
                         <label
                             htmlFor="Description"
                             className=" mt-5 font-bold text-sm "
@@ -400,8 +417,8 @@ const AddJobs = () => {
                                 />
                             ))}
                         </div>
-                        <div className="grid md:grid-cols-2 grid-cols-1 me-24">
-                            <div className="flex grid-cols-2  gap-4">
+                        <div className="grid md:grid-cols-2 grid-cols-1 lg:me-24 md:me-12">
+                            <div className="flex xl:flex-row flex-col  gap-4">
                                 <div className="w-full">
                                     <input
                                         type="text"

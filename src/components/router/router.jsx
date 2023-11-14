@@ -10,6 +10,7 @@ import PrivateRoute from "../shared/privateRoute/PrivateRoute";
 import PostedJobs from "../home/jobs/PostedJobs";
 import BidRequested from "../home/bits/BidRequested";
 import AddJobs from "../home/jobs/addJobs/AddJobs";
+import Dashboard from "../dashboard/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
                     ),
             },
         ],
+    },
+    {
+        path: "/dashboard",
+        element: <Dashboard />,
     },
 ]);
 export default router;

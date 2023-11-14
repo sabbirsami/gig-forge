@@ -8,7 +8,7 @@ const DashboardHeader = () => {
         signOutUser();
     };
     return (
-        <div className="border-b">
+        <div className=" bg-secondaryColor">
             <div className="flex justify-between items-center py-3  px-6">
                 {/* logo */}
                 <div className="">

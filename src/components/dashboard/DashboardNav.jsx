@@ -11,17 +11,20 @@ const DashboardNav = () => {
                         </Link>
                     </li>
                     <li className="w-full ">
-                        <Link to={"/manage-jobs"} className="w-full ">
+                        <Link to={"/dashboard/manage-jobs"} className="w-full ">
                             Manage Jobs
                         </Link>
                     </li>
                     <li className="w-full ">
-                        <Link to={"/manage-bids"} className="w-full ">
+                        <Link to={"/dashboard/manage-bids"} className="w-full ">
                             Manage Bids
                         </Link>
                     </li>
                     <li className="w-full ">
-                        <Link to={"/manage-users"} className="w-full ">
+                        <Link
+                            to={"/dashboard/manage-users"}
+                            className="w-full "
+                        >
                             Manage Users
                         </Link>
                     </li>

@@ -11,6 +11,8 @@ import PostedJobs from "../home/jobs/PostedJobs";
 import BidRequested from "../home/bits/BidRequested";
 import AddJobs from "../home/jobs/addJobs/AddJobs";
 import Dashboard from "../dashboard/Dashboard";
+import ManageJobs from "../dashboard/manage/ManageJobs";
+import ManageBids from "../dashboard/bids/ManageBids";
 
 const router = createBrowserRouter([
     {
@@ -79,6 +81,16 @@ const router = createBrowserRouter([
     {
         path: "/dashboard",
         element: <Dashboard />,
+        children: [
+            {
+                path: "/dashboard/manage-jobs",
+                element: <ManageJobs />,
+            },
+            {
+                path: "/dashboard/manage-bids",
+                element: <ManageBids />,
+            },
+        ],
     },
 ]);
 export default router;

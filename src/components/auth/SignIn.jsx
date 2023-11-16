@@ -87,7 +87,10 @@ const SignIn = () => {
                             <h2 className="text-4xl pb-8">
                                 Hey there! <br /> Welcome back.
                             </h2>
-                            <Link className="" to={"/"}>
+                            <Link
+                                className="bg-white px-4 rounded-full hover:text-primaryColor py-2"
+                                to={"/"}
+                            >
                                 {" "}
                                 <BsArrowLeft className="inline mb-0.5" /> Back
                                 to Home

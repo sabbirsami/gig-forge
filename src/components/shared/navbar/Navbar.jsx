@@ -12,6 +12,7 @@ function Navbar() {
     const handleSignOut = () => {
         signOutUser();
     };
+    const isAdmin = true;
     const navItem = [
         <li key={1}>
             <NavLink className=" p-4" to={"/"}>
@@ -74,9 +75,16 @@ function Navbar() {
             )}
         </li>,
     ];
+    const adminNav = [
+        <li key={4}>
+            <NavLink className=" p-4" to={"/dashboard"}>
+                Dashboard
+            </NavLink>
+        </li>,
+    ];
     return (
         <div className="relative">
-            <div className="container mx-auto px-6">
+            <div className="container navbar-menu mx-auto px-6">
                 <div className="flex justify-between items-center py-7">
                     {/* logo */}
                     <div className="">
@@ -85,9 +93,11 @@ function Navbar() {
                     {/* menu section */}
                     <nav className="flex">
                         <ul className="lg:flex items-center hidden">
-                            {navItem.map((item, idx) => (
-                                <span key={idx}>{item}</span>
-                            ))}
+                            {isAdmin
+                                ? adminNav
+                                : navItem.map((item, idx) => (
+                                      <span key={idx}>{item}</span>
+                                  ))}
                         </ul>
                         <ul className="">
                             <button onClick={() => setHide(!hide)}>

@@ -20,11 +20,19 @@ body {
     border-color: #1dbf73 !important;
     color: #008848 !important;
 }
-a.active {
+.dashboard-menu a.active {
+    position: relative;
+    padding: 10px 20px;
+
+    width: 100%;
+    background: #fff;
+    color: #1dbf73;
+}
+.navbar-menu a.active {
     position: relative;
     color: #1dbf73;
 }
-a.active::after {
+.navbar-menu a.active::after {
     content: "—";
     color: #1dbf73;
     font-size: 20px;

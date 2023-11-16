@@ -1,32 +1,41 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const DashboardNav = () => {
     return (
-        <div className="h-full bg-secondaryColor w-64">
+        <div className="h-full bg-secondaryColor w-64 dashboard-menu">
             <nav className="p-6 ">
                 <ul className="space-y-5">
                     <li className="w-full ">
-                        <Link to={"/dashboard"} className="w-full ">
+                        <NavLink
+                            to={"/dashboard"}
+                            className="w-full rounded-sm  block ps-5"
+                        >
                             Dashboard
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="w-full ">
-                        <Link to={"/dashboard/manage-jobs"} className="w-full ">
+                        <NavLink
+                            to={"/dashboard/manage-jobs"}
+                            className="w-full block rounded-sm ps-5 "
+                        >
                             Manage Jobs
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="w-full ">
-                        <Link to={"/dashboard/manage-bids"} className="w-full ">
+                        <NavLink
+                            to={"/dashboard/manage-bids"}
+                            className="w-full   block rounded-sm ps-5 "
+                        >
                             Manage Bids
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="w-full ">
-                        <Link
+                        <NavLink
                             to={"/dashboard/manage-users"}
-                            className="w-full "
+                            className="w-full  block rounded-sm ps-5 "
                         >
                             Manage Users
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
             </nav>

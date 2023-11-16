@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../auth/AuthProvider";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const DashboardHeader = () => {
     const { user, signOutUser } = useContext(AuthContext);
     const handleSignOut = () => {
@@ -12,7 +12,9 @@ const DashboardHeader = () => {
             <div className="flex justify-between items-center py-3  px-6">
                 {/* logo */}
                 <div className="">
-                    <img className="w-48" src={logo} alt="" />
+                    <Link to={"/"}>
+                        <img className="w-48" src={logo} alt="" />
+                    </Link>
                 </div>
                 {/* menu section */}
                 <nav className="">

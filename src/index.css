@@ -10,6 +10,9 @@ body {
 .banner-section {
     background-image: linear-gradient(90deg, #ffffff 80%, #d2f2e3 20%);
 }
+.auth-section {
+    background-image: linear-gradient(90deg, #d2f2e3 40%, #ffffff 60%);
+}
 .react-tabs__tab-list {
     border-bottom: 1px solid #1dbf73 !important;
 }
@@ -30,4 +33,12 @@ a.active::after {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+}
+@media (max-width: 425px) {
+    .auth-section {
+        background-image: none;
+    }
+    .banner-section {
+        background-image: none;
+    }
 }

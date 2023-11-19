@@ -8,6 +8,7 @@ import { updateProfile } from "firebase/auth";
 import auth from "../../firebase.config";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../hooq/useAxiosSecure";
 
 const Register = () => {
     const { signInWithGoogle, registerUser, setLoading } =
@@ -23,6 +24,7 @@ const Register = () => {
     } = useForm();
     const location = useLocation();
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
 
     const onSubmit = (data) => {
         setLoading(true);
@@ -47,6 +49,15 @@ const Register = () => {
                         toast.success("Successfully Register", {
                             duration: 2000,
                             className: "mt-32",
+                        });
+                        const newUser = {
+                            userName: name,
+                            email: email,
+                            uid: result?.user.uid,
+                            img: result?.user.photoUrl,
+                        };
+                        axiosSecure.post("/all-users", newUser).then((res) => {
+                            console.log(res.data);
                         });
                         navigate(location.state ? location.state : "/");
                         setSignInWithGoogleError("");
@@ -79,7 +90,6 @@ const Register = () => {
                     className: "mt-32",
                 });
             });
-        console.log(data);
     };
     const validatePassword = (value) => {
         if (!/(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}/.test(value)) {

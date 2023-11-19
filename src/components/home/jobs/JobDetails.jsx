@@ -13,6 +13,27 @@ const JobDetails = () => {
     const [loading, setLoading] = useState(false);
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+    // get today date
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let yyyy = String(today.getFullYear());
+    today = yyyy + "-" + mm + "-" + dd;
+    const deadlineDay = parseFloat(data[0].deadline.split("-")[2]);
+    const deadlineMonth = parseFloat(data[0].deadline.split("-")[1]);
+    const deadlineYear = parseFloat(data[0].deadline.split("-")[0]);
+    const todayDay = parseFloat(today.split("-")[2]);
+    const todayMonth = parseFloat(today.split("-")[1]);
+    const todayYear = parseFloat(today.split("-")[0]);
+    console.log(
+        deadlineDay,
+        deadlineMonth,
+        deadlineYear,
+        todayDay,
+        todayMonth,
+        todayYear
+    );
+
     const {
         title,
         category,
@@ -106,12 +127,37 @@ const JobDetails = () => {
                                 <hr className="mb-5" />
                                 <div className="col-span-2 pt-0.5 py-3">
                                     <div className="md:flex justify-between items-center">
-                                        <p className="text-base font-bold text-black/60">
-                                            Deadline:{" "}
-                                            <span className="text-black">
-                                                {deadline}
+                                        {deadlineYear <= todayYear ? (
+                                            <span>
+                                                {deadlineMonth <= todayMonth ? (
+                                                    <p className="text-base  font-bold text-black/60">
+                                                        Deadline:{" "}
+                                                        {deadlineDay <=
+                                                        todayDay ? (
+                                                            <span className="text-errorColor ">
+                                                                {deadline}
+                                                            </span>
+                                                        ) : (
+                                                            <span className="text-black">
+                                                                {deadline}
+                                                            </span>
+                                                        )}
+                                                    </p>
+                                                ) : (
+                                                    <p className="text-base text-black font-bold">
+                                                        Deadline:{" "}
+                                                        <span className="text-errorColor ">
+                                                            {deadline}
+                                                        </span>
+                                                    </p>
+                                                )}
                                             </span>
-                                        </p>
+                                        ) : (
+                                            <p className="text-base text-errorColor font-bold">
+                                                {deadline}
+                                            </p>
+                                        )}
+
                                         <p className="text-base font-bold text-black/60">
                                             Status:{" "}
                                             <span className="text-[#008848]">
@@ -220,7 +266,15 @@ const JobDetails = () => {
                             }}
                             className={`w-full bg-primaryColor rounded-md py-4 mt-6 disable text-white font-bold disabled:opacity-75`}
                             type="submit"
-                            disabled={employer_email === user?.email}
+                            disabled={
+                                employer_email === user?.email ||
+                                (deadlineYear <= todayYear &&
+                                    deadlineYear <= todayYear &&
+                                    deadlineDay <= todayDay)
+                                // deadlineYear <= todayYear ||
+                                // deadlineMonth <= todayMonth ||
+                                // deadlineDay <= todayDay
+                            }
                         >
                             {loading ? (
                                 <span className="loading loading-spinner text-white"></span>
@@ -228,6 +282,33 @@ const JobDetails = () => {
                                 <span> Bid on the project</span>
                             )}
                         </motion.button>
+                        <div className="pt-3 text-xs">
+                            {deadlineYear <= todayYear ? (
+                                <span>
+                                    {deadlineMonth <= todayMonth ? (
+                                        <p className="  font-bold text-black/60">
+                                            {deadlineDay <= todayDay ? (
+                                                <span className="text-errorColor ">
+                                                    {deadline} Deadline is over
+                                                </span>
+                                            ) : (
+                                                <span className="text-black"></span>
+                                            )}
+                                        </p>
+                                    ) : (
+                                        <p className=" text-black font-bold">
+                                            <span className="text-errorColor ">
+                                                {deadline}, Deadline is over
+                                            </span>
+                                        </p>
+                                    )}
+                                </span>
+                            ) : (
+                                <p className=" text-errorColor font-bold">
+                                    {deadline}
+                                </p>
+                            )}
+                        </div>
                     </form>
                 </div>
             </div>

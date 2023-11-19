@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooq/useAxiosSecure";
 
 const ManageJob = ({ job, refetch }) => {
     // get today date
@@ -18,6 +19,8 @@ const ManageJob = ({ job, refetch }) => {
     const todayMonth = parseFloat(today.split("-")[1]);
     const todayYear = parseFloat(today.split("-")[0]);
 
+    const axiosSecure = useAxiosSecure();
+
     const handleDelete = () => {
         console.log(job._id);
         Swal.fire({
@@ -30,12 +33,10 @@ const ManageJob = ({ job, refetch }) => {
         }).then((result) => {
             if (result?.isConfirmed) {
                 console.log("object");
-                fetch(`http://localhost:5000/manage/jobs/${job._id}`, {
-                    method: "DELETE",
-                })
-                    .then((res) => res.json())
+                axiosSecure
+                    .delete(`http://localhost:5000/manage/jobs/${job._id}`)
                     .then((result) => {
-                        if (result.deletedCount) {
+                        if (result?.data.deletedCount) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
@@ -56,6 +57,14 @@ const ManageJob = ({ job, refetch }) => {
                             <h4 className="lg:text-xl md:text-lg font-bold pe-2">
                                 {job.title}
                             </h4>
+                            <div className=" pt-2">
+                                <p className="text-sm text-whiteSecondary pb-1">
+                                    Category:{" "}
+                                    <span className="text-black font-semibold">
+                                        {job.category}
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                         <div className="col-span-1">
                             <p className="text-sm text-whiteSecondary">

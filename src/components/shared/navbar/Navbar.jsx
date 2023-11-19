@@ -12,7 +12,7 @@ function Navbar() {
     const handleSignOut = () => {
         signOutUser();
     };
-    const isAdmin = true;
+    const isAdmin = false;
     const navItem = [
         <li key={1}>
             <NavLink className=" p-4" to={"/"}>

@@ -34,7 +34,9 @@ const ManageJob = ({ job, refetch }) => {
             if (result?.isConfirmed) {
                 console.log("object");
                 axiosSecure
-                    .delete(`http://localhost:5000/manage/jobs/${job._id}`)
+                    .delete(
+                        `https://server-site-zeta-red.vercel.app/manage/jobs/${job._id}`
+                    )
                     .then((result) => {
                         if (result?.data.deletedCount) {
                             Swal.fire({

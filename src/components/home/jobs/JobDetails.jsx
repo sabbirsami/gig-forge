@@ -231,6 +231,21 @@ const JobDetails = () => {
                                 placeholder="Deadline"
                                 {...register("deadline", { required: true })}
                             />
+                        </div>
+                        <div className="md:px-14 md:pt-10 md:pb-14 p-6 bg-whiteSecondary/10 rounded-md mt-5">
+                            <label
+                                htmlFor="buyerEmail"
+                                className=" mt-6 font-bold text-sm "
+                            >
+                                Bid Date
+                            </label>
+                            <input
+                                type="date"
+                                value={today}
+                                readOnly
+                                className="py-4 px-3 w-full mb-6 mt-2 rounded-md"
+                                placeholder="Email"
+                            />
                             <label
                                 htmlFor="buyerEmail"
                                 className=" mt-6 font-bold text-sm "
@@ -271,9 +286,6 @@ const JobDetails = () => {
                                 (deadlineYear <= todayYear &&
                                     deadlineYear <= todayYear &&
                                     deadlineDay <= todayDay)
-                                // deadlineYear <= todayYear ||
-                                // deadlineMonth <= todayMonth ||
-                                // deadlineDay <= todayDay
                             }
                         >
                             {loading ? (

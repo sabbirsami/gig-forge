@@ -13,6 +13,7 @@ import AddJobs from "../home/jobs/addJobs/AddJobs";
 import Dashboard from "../dashboard/Dashboard";
 import ManageJobs from "../dashboard/manage/ManageJobs";
 import ManageBids from "../dashboard/bids/ManageBids";
+import AdminRoute from "../shared/privateRoute/AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -82,7 +83,9 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: (
             <PrivateRoute>
-                <Dashboard />
+                <AdminRoute>
+                    <Dashboard />
+                </AdminRoute>
             </PrivateRoute>
         ),
         children: [

@@ -18,21 +18,7 @@ const JobDetails = () => {
     let dd = String(today.getDate()).padStart(2, "0");
     let mm = String(today.getMonth() + 1).padStart(2, "0");
     let yyyy = String(today.getFullYear());
-    today = yyyy + "-" + mm + "-" + dd;
-    const deadlineDay = parseFloat(data[0].deadline.split("-")[2]);
-    const deadlineMonth = parseFloat(data[0].deadline.split("-")[1]);
-    const deadlineYear = parseFloat(data[0].deadline.split("-")[0]);
-    const todayDay = parseFloat(today.split("-")[2]);
-    const todayMonth = parseFloat(today.split("-")[1]);
-    const todayYear = parseFloat(today.split("-")[0]);
-    console.log(
-        deadlineDay,
-        deadlineMonth,
-        deadlineYear,
-        todayDay,
-        todayMonth,
-        todayYear
-    );
+    today = `${yyyy}-${mm}-${dd}`;
 
     const {
         title,
@@ -47,11 +33,10 @@ const JobDetails = () => {
         packageItems,
         tags,
     } = data[0];
-    console.log(data);
 
     const onSubmit = (formData) => {
         setLoading(true);
-        console.log(formData);
+
         const deadline = formData.deadline;
         const bitPrice = formData.bitPrice;
         const userEmail = user.email;
@@ -63,7 +48,7 @@ const JobDetails = () => {
             deadline,
             status,
         };
-        console.log(bitData);
+
         axios
             .post("https://server-site-zeta-red.vercel.app/bits", bitData, {
                 withCredentials: true,
@@ -87,6 +72,8 @@ const JobDetails = () => {
                 });
             });
     };
+    console.log(deadline);
+    console.log(today);
     return (
         <div className="container mx-auto px-6 ">
             <Helmet>
@@ -127,34 +114,21 @@ const JobDetails = () => {
                                 <hr className="mb-5" />
                                 <div className="col-span-2 pt-0.5 py-3">
                                     <div className="md:flex justify-between items-center">
-                                        {deadlineYear <= todayYear ? (
-                                            <span>
-                                                {deadlineMonth <= todayMonth ? (
-                                                    <p className="text-base  font-bold text-black/60">
-                                                        Deadline:{" "}
-                                                        {deadlineDay <=
-                                                        todayDay ? (
-                                                            <span className="text-errorColor ">
-                                                                {deadline}
-                                                            </span>
-                                                        ) : (
-                                                            <span className="text-black">
-                                                                {deadline}
-                                                            </span>
-                                                        )}
-                                                    </p>
-                                                ) : (
-                                                    <p className="text-base text-black font-bold">
-                                                        Deadline:{" "}
-                                                        <span className="text-errorColor ">
-                                                            {deadline}
-                                                        </span>
-                                                    </p>
-                                                )}
-                                            </span>
+                                        {new Date(deadline) <
+                                        new Date(today) ? (
+                                            <p className="text-base font-bold text-black/60">
+                                                Deadline:{" "}
+                                                <span className="text-errorColor ">
+                                                    {" "}
+                                                    {deadline}
+                                                </span>
+                                            </p>
                                         ) : (
-                                            <p className="text-base text-errorColor font-bold">
-                                                {deadline}
+                                            <p className="text-base  font-bold text-black/60">
+                                                Deadline:{" "}
+                                                <span className="text-black">
+                                                    {deadline}
+                                                </span>
                                             </p>
                                         )}
 
@@ -283,9 +257,7 @@ const JobDetails = () => {
                             type="submit"
                             disabled={
                                 employer_email === user?.email ||
-                                (deadlineYear <= todayYear &&
-                                    deadlineYear <= todayYear &&
-                                    deadlineDay <= todayDay)
+                                new Date(deadline) < new Date(today)
                             }
                         >
                             {loading ? (
@@ -295,30 +267,15 @@ const JobDetails = () => {
                             )}
                         </motion.button>
                         <div className="pt-3 text-xs">
-                            {deadlineYear <= todayYear ? (
-                                <span>
-                                    {deadlineMonth <= todayMonth ? (
-                                        <p className="  font-bold text-black/60">
-                                            {deadlineDay <= todayDay ? (
-                                                <span className="text-errorColor ">
-                                                    {deadline} Deadline is over
-                                                </span>
-                                            ) : (
-                                                <span className="text-black"></span>
-                                            )}
-                                        </p>
-                                    ) : (
-                                        <p className=" text-black font-bold">
-                                            <span className="text-errorColor ">
-                                                {deadline}, Deadline is over
-                                            </span>
-                                        </p>
-                                    )}
-                                </span>
-                            ) : (
-                                <p className=" text-errorColor font-bold">
-                                    {deadline}
+                            {new Date(deadline) < new Date(today) ? (
+                                <p className="text-xs font-bold text-black/60">
+                                    <span className="text-errorColor ">
+                                        {deadline}
+                                    </span>{" "}
+                                    Deadline is over
                                 </p>
+                            ) : (
+                                <p className="text-base  font-bold text-black/60"></p>
                             )}
                         </div>
                     </form>

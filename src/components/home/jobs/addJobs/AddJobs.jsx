@@ -21,7 +21,7 @@ const AddJobs = () => {
     let dd = String(today.getDate()).padStart(2, "0");
     let mm = String(today.getMonth() + 1).padStart(2, "0");
     let yyyy = String(today.getFullYear());
-    today = yyyy + "-" + mm + "-" + dd;
+    today = `${yyyy}-${mm}-${dd}`;
 
     const [loading, setLoading] = useState(false);
     const [tagErrorMessage, setTagErrorMessage] = useState("");
@@ -76,86 +76,61 @@ const AddJobs = () => {
             setLoading(false);
         } else {
             setTagErrorMessage("");
-
-            const deadlineDay = parseFloat(data.deadline.split("-")[2]);
-            const deadlineMonth = parseFloat(data.deadline.split("-")[1]);
-            const deadlineYear = parseFloat(data.deadline.split("-")[0]);
-            const todayDay = parseFloat(today.split("-")[2]);
-            const todayMonth = parseFloat(today.split("-")[1]);
-            const todayYear = parseFloat(today.split("-")[0]);
-            console.log(
-                deadlineDay,
-                deadlineMonth,
-                deadlineYear,
-                todayDay,
-                todayMonth,
-                todayYear
-            );
-
-            if (deadlineYear >= todayYear) {
-                if (deadlineMonth >= todayMonth) {
-                    if (deadlineDay >= todayDay) {
-                        console.log("ok");
-                        setDateErrorMessage("");
-                        const {
-                            title,
-                            category,
-                            deadline,
-                            maximum_price,
-                            minimum_price,
-                            price,
-                            postDate,
-                            short_description,
-                        } = data;
-                        const addedJob = {
-                            title,
-                            category,
-                            deadline,
-                            postDate,
-                            maximum_price,
-                            minimum_price,
-                            price,
-                            short_description,
-                            packageItems,
-                            tags: tagsAdd.length !== 0 ? tagsAdd : defaultTags,
-                            status,
-                            employer_email,
-                        };
-                        fetch(`https://server-site-zeta-red.vercel.app/jobs`, {
-                            method: "POST",
-                            headers: {
-                                "content-type": "application/json",
-                            },
-                            body: JSON.stringify(addedJob),
-                        })
-                            .then((res) => res.json())
-                            .then((result) => {
-                                toast.success("Successfully job added", {
-                                    duration: 2000,
-                                    className: "mt-32",
-                                });
-                                setLoading(false);
-                                // navigate user when successfully login
-                                navigate("/posted-jobs");
-                                console.log(result);
-                            })
-                            .catch((err) => {
-                                console.log(err);
-                                toast.error("  Fail to add job", {
-                                    duration: 2000,
-                                    className: "mt-32",
-                                });
-                            });
-                    } else {
-                        setDateErrorMessage("please provide a valid day");
+            console.log(data.deadline, today);
+            if (new Date(data.deadline) > new Date(today)) {
+                console.log("ok");
+                setDateErrorMessage("");
+                const {
+                    title,
+                    category,
+                    deadline,
+                    maximum_price,
+                    minimum_price,
+                    price,
+                    postDate,
+                    short_description,
+                } = data;
+                const addedJob = {
+                    title,
+                    category,
+                    deadline,
+                    postDate,
+                    maximum_price,
+                    minimum_price,
+                    price,
+                    short_description,
+                    packageItems,
+                    tags: tagsAdd.length !== 0 ? tagsAdd : defaultTags,
+                    status,
+                    employer_email,
+                };
+                fetch(`https://server-site-zeta-red.vercel.app/jobs`, {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(addedJob),
+                })
+                    .then((res) => res.json())
+                    .then((result) => {
+                        toast.success("Successfully job added", {
+                            duration: 2000,
+                            className: "mt-32",
+                        });
                         setLoading(false);
-                    }
-                } else {
-                    setDateErrorMessage("please provide a valid month");
-                    setLoading(false);
-                }
+                        // navigate user when successfully login
+                        navigate("/posted-jobs");
+                        console.log(result);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        toast.error("  Fail to add job", {
+                            duration: 2000,
+                            className: "mt-32",
+                        });
+                    });
             } else {
-                setDateErrorMessage("please provide a valid year");
+                setDateErrorMessage("Please provide a valid Date");
                 setLoading(false);
             }
         }

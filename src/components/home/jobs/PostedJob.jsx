@@ -21,13 +21,7 @@ function PostedJob({ job, refetch, user }) {
     let mm = String(today.getMonth() + 1).padStart(2, "0");
     let yyyy = String(today.getFullYear());
     today = yyyy + "-" + mm + "-" + dd;
-    // get date as number
-    const deadlineDay = parseFloat(job.deadline.split("-")[2]);
-    const deadlineMonth = parseFloat(job.deadline.split("-")[1]);
-    const deadlineYear = parseFloat(job.deadline.split("-")[0]);
-    const todayDay = parseFloat(today.split("-")[2]);
-    const todayMonth = parseFloat(today.split("-")[1]);
-    const todayYear = parseFloat(today.split("-")[0]);
+   
 
     const handleDelete = () => {
         Swal.fire({
@@ -415,31 +409,19 @@ function PostedJob({ job, refetch, user }) {
                                 <p className="text-sm text-whiteSecondary pb-1">
                                     Deadline:
                                 </p>
-                                {deadlineYear <= todayYear ? (
-                                    <span>
-                                        {deadlineMonth <= todayMonth ? (
-                                            <p className="text-xs  font-bold">
-                                                {deadlineDay <= todayDay ? (
-                                                    <span className="text-errorColor ">
-                                                        {job.deadline}
-                                                    </span>
-                                                ) : (
-                                                    <span className="">
-                                                        {job.deadline}
-                                                    </span>
-                                                )}
-                                            </p>
-                                        ) : (
-                                            <p className="text-xs text-errorColor font-bold">
-                                                {job.deadline}
-                                            </p>
-                                        )}
-                                    </span>
-                                ) : (
-                                    <p className="text-xs text-errorColor font-bold">
-                                        {job.deadline}
-                                    </p>
-                                )}
+                                <p className="text-xs font-bold">
+                                    {new Date(job.deadline) <
+                                    new Date(today) ? (
+                                        <span className="text-errorColor ">
+                                            {" "}
+                                            {job.deadline}
+                                        </span>
+                                    ) : (
+                                        <span className="text-black">
+                                            {job.deadline}
+                                        </span>
+                                    )}
+                                </p>
                             </div>
                             <div className="">
                                 <p className="text-sm text-whiteSecondary pb-1">

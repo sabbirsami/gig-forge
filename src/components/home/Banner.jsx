@@ -24,7 +24,7 @@ const Banner = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="ms-auto md:p-20 p-10 bg-[#D2F2E3]">
+                    <div className="ms-auto  md:px-20 md:py-32 p-10 bg-[#D2F2E3]">
                         <img src={bannerImage} alt="" />
                     </div>
                 </div>

@@ -7,6 +7,12 @@ import { motion } from "framer-motion";
 function Job({ job }) {
     const [seeMore, setSeeMore] = useState(120);
     console.log(seeMore);
+    // get today date
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let yyyy = String(today.getFullYear());
+    today = `${yyyy}-${mm}-${dd}`;
     return (
         <div className="border border-primaryColor rounded-md md:h-72  h-92">
             <div className="p-4 h-full">
@@ -17,12 +23,22 @@ function Job({ job }) {
                                 {job.title}
                             </h4>
                             <div className="col-span-2 pt-0.5">
-                                <p className="text-sm text-whiteSecondary">
-                                    Deadline:
-                                </p>
-                                <p className="text-xs font-semibold">
-                                    {job.deadline}
-                                </p>
+                                {new Date(job.deadline) < new Date(today) ? (
+                                    <p className="text-sm text-whiteSecondary">
+                                        Deadline:{" "}
+                                        <span className="text-errorColor text-xs font-semibold">
+                                            {" "}
+                                            {job.deadline}
+                                        </span>
+                                    </p>
+                                ) : (
+                                    <p className="text-sm text-whiteSecondary">
+                                        Deadline:{" "}
+                                        <span className="text-black text-xs font-semibold">
+                                            {job.deadline}
+                                        </span>
+                                    </p>
+                                )}
                             </div>
                         </div>
                         <p className="text-sm pt-2 text-black">

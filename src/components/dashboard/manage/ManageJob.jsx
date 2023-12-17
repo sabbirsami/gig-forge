@@ -85,12 +85,12 @@ const ManageJob = ({ job, refetch }) => {
                                 <p className="text-xs font-bold">
                                     {new Date(job.deadline) <
                                     new Date(today) ? (
-                                        <span className="text-errorColor ">
-                                            {" "}
+                                        <span className="text-black">
                                             {job.deadline}
                                         </span>
                                     ) : (
-                                        <span className="text-black">
+                                        <span className="text-errorColor ">
+                                            {" "}
                                             {job.deadline}
                                         </span>
                                     )}

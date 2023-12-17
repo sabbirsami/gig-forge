@@ -46,9 +46,7 @@ function AuthProvider({ children }) {
                     .post(
                         `https://server-site-zeta-red.vercel.app/jwt`,
                         currentUserEmail,
-                        {
-                            withCredentials: true,
-                        }
+                        {}
                     )
                     .then((res) => {
                         console.log("response token", res.data);
@@ -59,9 +57,7 @@ function AuthProvider({ children }) {
                     .post(
                         "https://server-site-zeta-red.vercel.app/logout",
                         currentUserEmail,
-                        {
-                            withCredentials: true,
-                        }
+                        {}
                     )
                     .then((res) => {
                         console.log("response token", res.data);

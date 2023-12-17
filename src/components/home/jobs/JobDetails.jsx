@@ -50,9 +50,7 @@ const JobDetails = () => {
         };
 
         axios
-            .post("https://server-site-zeta-red.vercel.app/bits", bitData, {
-                withCredentials: true,
-            })
+            .post("https://server-site-zeta-red.vercel.app/bits", bitData, {})
             .then(function (response) {
                 // handle success
                 toast.success("Successfully Bid on the project", {

@@ -7,6 +7,7 @@ import PostResume from "./PostResume";
 import FindEmployee from "./FindEmployee";
 import Features from "./features/Features";
 import SavePalestine from "./savePalestine/SavePalestine";
+import Article from "./article/Article";
 
 const Home = () => {
     return (
@@ -21,6 +22,7 @@ const Home = () => {
             <Features />
             <PostResume />
             <AppSection />
+            <Article />
             <SavePalestine />
         </div>
     );
